@@ -1,0 +1,23 @@
+{
+  "name": "ibraheem-bello-portfolio",
+  "version": "1.0.0",
+  "description": "Professional portfolio website for Ibraheem Bello - Backend Developer",
+  "private": true,
+  "scripts": {
+    "dev:server": "cd server && npm run dev",
+    "dev:client": "cd client && npm run dev",
+    "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
+    "build:client": "cd client && npm run build",
+    "build:server": "cd server && npm run build",
+    "build": "npm run build:client && npm run build:server",
+    "start": "cd server && npm start",
+    "test:server": "cd server && npm test",
+    "test:client": "cd client && npm test",
+    "test": "npm run test:server && npm run test:client",
+    "lint": "eslint . --ext .ts,.tsx --ignore-path .gitignore",
+    "format": "prettier --write \"**/*.{ts,tsx,json,css}\""
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

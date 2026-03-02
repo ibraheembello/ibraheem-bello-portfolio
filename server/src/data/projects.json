@@ -1,0 +1,63 @@
+[
+  {
+    "id": 1,
+    "title": "Eventful Platform",
+    "description": "Full-stack event ticketing platform with QR code generation, Paystack payment integration, attendee management, analytics dashboard, and email notifications. Deployed on AWS EC2.",
+    "technologies": ["TypeScript", "React", "Node.js", "Express", "PostgreSQL", "Prisma", "AWS EC2"],
+    "liveUrl": "https://eventful-platform.com",
+    "githubUrl": "https://github.com/ibraheembello/Eventful-Platform",
+    "image": "/images/projects/eventful.webp",
+    "featured": true,
+    "category": "Full-Stack"
+  },
+  {
+    "id": 2,
+    "title": "Wallet Service",
+    "description": "Secure wallet service with Paystack deposit integration, wallet-to-wallet transfers, Google OAuth authentication, API key management, and comprehensive Swagger documentation. Deployed on Azure with CI/CD.",
+    "technologies": ["TypeScript", "NestJS", "PostgreSQL", "Paystack", "Azure", "CI/CD"],
+    "githubUrl": "https://github.com/ibraheembello/Wallet-Service",
+    "image": "/images/projects/wallet.webp",
+    "featured": true,
+    "category": "Backend"
+  },
+  {
+    "id": 3,
+    "title": "SchoolBase Backend API",
+    "description": "Multi-platform educational portal API with authentication, tenant-specific configurations, and role-based access control. Open source contribution during HNG Internship.",
+    "technologies": ["TypeScript", "NestJS", "TypeORM", "PostgreSQL"],
+    "githubUrl": "https://github.com/ibraheembello/SchoolBase-BE",
+    "image": "/images/projects/schoolbase.webp",
+    "featured": true,
+    "category": "Backend"
+  },
+  {
+    "id": 4,
+    "title": "GitHub Issue Monitor",
+    "description": "Real-time monitoring tool for tracking GitHub repository activities, issues, pull requests, and commits with Telegram bot integration for instant notifications.",
+    "technologies": ["TypeScript", "Node.js", "GitHub API", "Telegram Bot API"],
+    "githubUrl": "https://github.com/ibraheembello/GitHub-Issue-Monitor",
+    "image": "/images/projects/github-monitor.webp",
+    "featured": false,
+    "category": "Backend"
+  },
+  {
+    "id": 5,
+    "title": "Restaurant Chatbot",
+    "description": "Intelligent chatbot for restaurant order management with conversational UI, menu browsing, and order tracking capabilities.",
+    "technologies": ["TypeScript", "Node.js", "Express"],
+    "githubUrl": "https://github.com/ibraheembello/Restaurant-Chatbot",
+    "image": "/images/projects/chatbot.webp",
+    "featured": false,
+    "category": "Backend"
+  },
+  {
+    "id": 6,
+    "title": "Birthday Reminder App",
+    "description": "Birthday management application with full CRUD operations for birthday records, automated reminders, and notification scheduling.",
+    "technologies": ["JavaScript", "Node.js", "Express", "MongoDB"],
+    "githubUrl": "https://github.com/ibraheembello/Birthday-Reminder-App",
+    "image": "/images/projects/birthday.webp",
+    "featured": false,
+    "category": "Backend"
+  }
+]

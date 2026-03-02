@@ -1,0 +1,24 @@
+[
+  {
+    "id": 1,
+    "role": "Backend Engineering Student & Vice President",
+    "company": "AltSchool Africa",
+    "location": "Lagos, Nigeria",
+    "startDate": "2025-02",
+    "endDate": null,
+    "current": true,
+    "description": "Leading peer learning initiatives for 100+ students in the Baraka Cohort. Organizing technical workshops and fostering a collaborative engineering culture. Advocating for curriculum improvements through student feedback.",
+    "technologies": ["Node.js", "Express.js", "TypeScript", "PostgreSQL", "MongoDB"]
+  },
+  {
+    "id": 2,
+    "role": "Backend Intern (Finalist)",
+    "company": "HNG Internship",
+    "location": "Remote",
+    "startDate": "2025-10",
+    "endDate": "2025-12",
+    "current": false,
+    "description": "Selected as Finalist among 12,362 participants (top 450). Mastered TypeScript, NestJS, and TypeORM in high-pressure sprint cycles. Collaborated with cross-functional sub-teams on real-world production projects under tight deadlines.",
+    "technologies": ["TypeScript", "NestJS", "TypeORM", "PostgreSQL"]
+  }
+]
