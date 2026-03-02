@@ -81,7 +81,7 @@ export default function Navbar() {
               {activeSection === link.href.slice(1) && (
                 <motion.div
                   layoutId="activeNav"
-                  className="absolute inset-0 bg-primary-600/20 border border-primary-500/30 rounded-lg"
+                  className="absolute bottom-0 left-2 right-2 h-0.5 rounded-full bg-gradient-to-r from-primary-500 via-accent-500 to-highlight-500"
                   transition={{ type: 'spring', stiffness: 400, damping: 30 }}
                 />
               )}

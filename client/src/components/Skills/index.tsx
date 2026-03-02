@@ -79,7 +79,7 @@ export default function Skills() {
         >
           {skills[activeCategory as keyof SkillsData].map((skill) => (
             <motion.div key={skill.name} variants={staggerItem}>
-              <SkillBadge name={skill.name} level={skill.level} />
+              <SkillBadge name={skill.name} level={skill.level} icon={skill.icon} />
             </motion.div>
           ))}
         </motion.div>

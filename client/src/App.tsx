@@ -1,3 +1,5 @@
+import { useState, useEffect } from 'react';
+import { AnimatePresence } from 'framer-motion';
 import Navbar from '@/components/Layout/Navbar';
 import Hero from '@/components/Hero';
 import About from '@/components/About';
@@ -8,22 +10,36 @@ import Experience from '@/components/Experience';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Layout/Footer';
 import BackToTop from '@/components/ui/BackToTop';
+import LoadingScreen from '@/components/ui/LoadingScreen';
 
 export default function App() {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 1800);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
-    <div className="min-h-screen">
-      <Navbar />
-      <main>
-        <Hero />
-        <About />
-        <Stats />
-        <Skills />
-        <Projects />
-        <Experience />
-        <Contact />
-      </main>
-      <Footer />
-      <BackToTop />
-    </div>
+    <>
+      <AnimatePresence mode="wait">
+        {loading && <LoadingScreen key="loader" />}
+      </AnimatePresence>
+
+      <div className={`min-h-screen ${loading ? 'overflow-hidden h-screen' : ''}`}>
+        <Navbar />
+        <main>
+          <Hero />
+          <About />
+          <Stats />
+          <Skills />
+          <Projects />
+          <Experience />
+          <Contact />
+        </main>
+        <Footer />
+        <BackToTop />
+      </div>
+    </>
   );
 }

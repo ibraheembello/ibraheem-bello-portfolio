@@ -1,9 +1,11 @@
 import { motion } from 'framer-motion';
 import { staggerItem } from '@/lib/animations/variants';
+import { getSkillIcon, getSkillIconColor } from '@/lib/skillIcons';
 
 interface SkillBadgeProps {
   name: string;
   level: string;
+  icon?: string;
 }
 
 const levelColors: Record<string, string> = {
@@ -12,7 +14,10 @@ const levelColors: Record<string, string> = {
   Beginner: 'from-highlight-500 to-primary-500',
 };
 
-export default function SkillBadge({ name, level }: SkillBadgeProps) {
+export default function SkillBadge({ name, level, icon }: SkillBadgeProps) {
+  const IconComponent = icon ? getSkillIcon(icon) : null;
+  const iconColor = icon ? getSkillIconColor(icon) : undefined;
+
   return (
     <motion.div
       variants={staggerItem}
@@ -20,9 +25,17 @@ export default function SkillBadge({ name, level }: SkillBadgeProps) {
       className="glass-card rounded-xl px-4 py-3 flex items-center gap-3 cursor-default
                  transition-all duration-300 hover:border-primary-500/30 hover:shadow-glow group"
     >
-      <div
-        className={`w-2 h-2 rounded-full bg-gradient-to-r ${levelColors[level] || levelColors.Beginner}`}
-      />
+      {IconComponent ? (
+        <IconComponent
+          size={16}
+          className="shrink-0 opacity-70 group-hover:opacity-100 transition-opacity duration-300"
+          style={iconColor ? { color: iconColor } : undefined}
+        />
+      ) : (
+        <div
+          className={`w-2 h-2 rounded-full shrink-0 bg-gradient-to-r ${levelColors[level] || levelColors.Beginner}`}
+        />
+      )}
       <span className="text-sm font-body text-gray-200 group-hover:text-white transition-colors">
         {name}
       </span>

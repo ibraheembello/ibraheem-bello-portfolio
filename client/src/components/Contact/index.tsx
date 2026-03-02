@@ -207,14 +207,47 @@ export default function Contact() {
                 {/* Status messages */}
                 <AnimatePresence>
                   {status === 'success' && (
-                    <motion.p
+                    <motion.div
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0 }}
-                      className="text-green-400 text-sm font-body"
+                      className="flex items-center gap-3"
                     >
-                      Message sent successfully! I&apos;ll get back to you soon.
-                    </motion.p>
+                      {/* Animated checkmark */}
+                      <motion.svg
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        className="shrink-0"
+                      >
+                        <motion.circle
+                          cx="12"
+                          cy="12"
+                          r="10"
+                          stroke="#4ade80"
+                          strokeWidth="2"
+                          fill="none"
+                          initial={{ pathLength: 0 }}
+                          animate={{ pathLength: 1 }}
+                          transition={{ duration: 0.5, ease: 'easeOut' }}
+                        />
+                        <motion.path
+                          d="M8 12l3 3 5-6"
+                          stroke="#4ade80"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          fill="none"
+                          initial={{ pathLength: 0 }}
+                          animate={{ pathLength: 1 }}
+                          transition={{ duration: 0.3, delay: 0.5, ease: 'easeOut' }}
+                        />
+                      </motion.svg>
+                      <p className="text-green-400 text-sm font-body">
+                        Message sent successfully! I&apos;ll get back to you soon.
+                      </p>
+                    </motion.div>
                   )}
                   {status === 'error' && (
                     <motion.p

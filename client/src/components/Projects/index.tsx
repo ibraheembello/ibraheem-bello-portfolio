@@ -66,20 +66,45 @@ export default function Projects() {
           {filtered.map((project) => (
             <motion.div key={project.id} variants={staggerItem}>
               <GlassCard glow="primary" className="h-full flex flex-col group">
-                {/* Project image */}
+                {/* Project image with hover overlay */}
                 <div className="relative h-48 rounded-xl overflow-hidden mb-5 bg-gradient-to-br from-background-surface to-background-card">
                   <img
                     src={project.image}
                     alt={project.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                     loading="lazy"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-background-card/60 to-transparent" />
 
+                  {/* Hover overlay */}
+                  <div className="absolute inset-0 bg-background-dark/70 backdrop-blur-sm flex items-center justify-center gap-3
+                                  opacity-0 group-hover:opacity-100 transition-all duration-300">
+                    <a
+                      href={project.githubUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-10 h-10 rounded-xl glass-strong flex items-center justify-center
+                                 text-white hover:text-primary-400 hover:border-primary-500/50 transition-all duration-200"
+                    >
+                      <FaGithub size={18} />
+                    </a>
+                    {project.liveUrl && (
+                      <a
+                        href={project.liveUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-10 h-10 rounded-xl glass-strong flex items-center justify-center
+                                   text-white hover:text-accent-400 hover:border-accent-500/50 transition-all duration-200"
+                      >
+                        <FaExternalLinkAlt size={16} />
+                      </a>
+                    )}
+                  </div>
+
                   {/* Featured badge */}
                   {project.featured && (
                     <div className="absolute top-3 right-3 px-3 py-1 rounded-full text-xs font-body
-                                    bg-gradient-to-r from-primary-600 to-accent-500 text-white">
+                                    bg-gradient-to-r from-primary-600 to-accent-500 text-white z-10">
                       Featured
                     </div>
                   )}
