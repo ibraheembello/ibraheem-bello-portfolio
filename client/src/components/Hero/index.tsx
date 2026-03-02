@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { heroTitle, heroSubtitle, heroCta } from '@/lib/animations/variants';
 import { useGpuDetection } from '@/lib/animations/hooks';
 import Button from '@/components/ui/Button';
+import TypeWriter from '@/components/ui/TypeWriter';
 import { FaGithub, FaLinkedinIn } from 'react-icons/fa';
 import { HiArrowDown } from 'react-icons/hi';
 
@@ -70,15 +71,21 @@ export default function Hero() {
           <span className="gradient-text">Ibraheem Bello</span>
         </motion.h1>
 
-        {/* Title */}
-        <motion.p
+        {/* Typing Title */}
+        <motion.div
           variants={heroSubtitle}
           initial="hidden"
           animate="visible"
-          className="text-xl md:text-2xl text-gray-300 font-body mb-4 max-w-3xl mx-auto"
+          className="text-xl md:text-2xl text-gray-300 font-body mb-4 max-w-3xl mx-auto h-9"
         >
-          Backend Developer &bull; Engineering Leader &bull; Open Source Contributor
-        </motion.p>
+          <TypeWriter
+            words={['Backend Developer', 'Engineering Leader', 'Open Source Contributor', 'API Architect']}
+            typingSpeed={80}
+            deletingSpeed={50}
+            pauseTime={2000}
+            className="gradient-text font-semibold"
+          />
+        </motion.div>
 
         {/* Description */}
         <motion.p
