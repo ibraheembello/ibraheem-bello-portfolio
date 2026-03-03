@@ -36,7 +36,7 @@ export default function SkillBadge({ name, level, icon }: SkillBadgeProps) {
           className={`w-2 h-2 rounded-full shrink-0 bg-gradient-to-r ${levelColors[level] || levelColors.Beginner}`}
         />
       )}
-      <span className="text-sm font-body text-gray-200 group-hover:text-white transition-colors">
+      <span className="text-sm font-body text-foreground-secondary group-hover:text-foreground transition-colors">
         {name}
       </span>
     </motion.div>

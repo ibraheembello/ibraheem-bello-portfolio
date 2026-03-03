@@ -79,10 +79,10 @@ export default function Contact() {
             className="lg:col-span-2 space-y-6"
           >
             <GlassCard hover={false} className="space-y-6">
-              <h3 className="text-lg font-heading font-semibold text-white">
+              <h3 className="text-lg font-heading font-semibold text-foreground">
                 Let&apos;s Connect
               </h3>
-              <p className="text-gray-400 text-sm font-body leading-relaxed">
+              <p className="text-foreground-muted text-sm font-body leading-relaxed">
                 Whether you have a question, a project idea, or just want to say hello,
                 feel free to reach out. I&apos;m always open to new opportunities.
               </p>
@@ -94,13 +94,13 @@ export default function Contact() {
                       {item.icon}
                     </div>
                     <div>
-                      <p className="text-xs text-gray-500 font-body">{item.label}</p>
+                      <p className="text-xs text-foreground-dim font-body">{item.label}</p>
                       {item.href ? (
-                        <a href={item.href} className="text-sm text-gray-200 hover:text-white transition-colors font-body">
+                        <a href={item.href} className="text-sm text-foreground-secondary hover:text-foreground transition-colors font-body">
                           {item.value}
                         </a>
                       ) : (
-                        <p className="text-sm text-gray-200 font-body">{item.value}</p>
+                        <p className="text-sm text-foreground-secondary font-body">{item.value}</p>
                       )}
                     </div>
                   </div>
@@ -109,7 +109,7 @@ export default function Contact() {
 
               {/* Social links */}
               <div className="pt-4 border-t border-glass-border">
-                <p className="text-xs text-gray-500 font-body mb-3">Follow me</p>
+                <p className="text-xs text-foreground-dim font-body mb-3">Follow me</p>
                 <div className="flex gap-3">
                   {socials.map((link) => (
                     <motion.a
@@ -119,7 +119,7 @@ export default function Contact() {
                       rel="noopener noreferrer"
                       whileHover={{ scale: 1.1, y: -3 }}
                       className="w-10 h-10 rounded-xl glass flex items-center justify-center
-                                 text-gray-400 hover:text-white hover:shadow-glow transition-all duration-300"
+                                 text-foreground-muted hover:text-foreground hover:shadow-glow transition-all duration-300"
                       aria-label={link.label}
                     >
                       {link.icon}
@@ -141,7 +141,7 @@ export default function Contact() {
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid sm:grid-cols-2 gap-6">
                   <div>
-                    <label htmlFor="name" className="block text-sm text-gray-300 font-body mb-2">
+                    <label htmlFor="name" className="block text-sm text-foreground-secondary font-body mb-2">
                       Your Name
                     </label>
                     <input
@@ -153,13 +153,13 @@ export default function Contact() {
                       minLength={2}
                       maxLength={100}
                       className="w-full px-4 py-3 rounded-xl bg-glass-light border border-glass-border
-                                 text-white font-body placeholder-gray-600 focus:outline-none
+                                 text-foreground font-body placeholder-foreground-dim focus:outline-none
                                  focus:border-primary-500/50 focus:shadow-glow transition-all duration-300"
                       placeholder="John Doe"
                     />
                   </div>
                   <div>
-                    <label htmlFor="email" className="block text-sm text-gray-300 font-body mb-2">
+                    <label htmlFor="email" className="block text-sm text-foreground-secondary font-body mb-2">
                       Your Email
                     </label>
                     <input
@@ -169,7 +169,7 @@ export default function Contact() {
                       onChange={(e) => setForm({ ...form, email: e.target.value })}
                       required
                       className="w-full px-4 py-3 rounded-xl bg-glass-light border border-glass-border
-                                 text-white font-body placeholder-gray-600 focus:outline-none
+                                 text-foreground font-body placeholder-foreground-dim focus:outline-none
                                  focus:border-primary-500/50 focus:shadow-glow transition-all duration-300"
                       placeholder="john@example.com"
                     />
@@ -177,7 +177,7 @@ export default function Contact() {
                 </div>
 
                 <div>
-                  <label htmlFor="message" className="block text-sm text-gray-300 font-body mb-2">
+                  <label htmlFor="message" className="block text-sm text-foreground-secondary font-body mb-2">
                     Your Message
                   </label>
                   <textarea
@@ -189,7 +189,7 @@ export default function Contact() {
                     maxLength={1000}
                     rows={6}
                     className="w-full px-4 py-3 rounded-xl bg-glass-light border border-glass-border
-                               text-white font-body placeholder-gray-600 focus:outline-none
+                               text-foreground font-body placeholder-foreground-dim focus:outline-none
                                focus:border-primary-500/50 focus:shadow-glow transition-all duration-300 resize-none"
                     placeholder="Tell me about your project or just say hello..."
                   />

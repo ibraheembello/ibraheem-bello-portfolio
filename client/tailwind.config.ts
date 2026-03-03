@@ -3,6 +3,7 @@ import plugin from 'tailwindcss/plugin';
 
 const config: Config = {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
+  darkMode: 'class',
   theme: {
     extend: {
       colors: {
@@ -42,19 +43,25 @@ const config: Config = {
           800: '#9d174d',
           900: '#831843',
         },
+        foreground: {
+          DEFAULT: 'var(--fg-primary)',
+          secondary: 'var(--fg-secondary)',
+          muted: 'var(--fg-muted)',
+          dim: 'var(--fg-dim)',
+        },
         background: {
-          dark: '#0A0A1A',
+          dark: 'var(--bg-page)',
           deeper: '#060612',
-          card: '#0F0F2D',
-          surface: '#1A1A3E',
-          elevated: '#1E1E3F',
-          hover: '#2A2A4F',
+          card: 'var(--bg-card)',
+          surface: 'var(--bg-surface)',
+          elevated: 'var(--bg-elevated)',
+          hover: 'var(--bg-hover)',
         },
         glass: {
-          light: 'rgba(255, 255, 255, 0.05)',
-          medium: 'rgba(255, 255, 255, 0.08)',
-          strong: 'rgba(255, 255, 255, 0.12)',
-          border: 'rgba(255, 255, 255, 0.1)',
+          light: 'var(--glass-bg)',
+          medium: 'var(--glass-bg-medium)',
+          strong: 'var(--glass-bg-strong)',
+          border: 'var(--glass-border)',
         },
       },
       fontFamily: {
@@ -131,8 +138,8 @@ const config: Config = {
         glow: '0 0 20px rgba(124, 58, 237, 0.3)',
         'glow-accent': '0 0 20px rgba(6, 182, 212, 0.3)',
         'glow-highlight': '0 0 20px rgba(236, 72, 153, 0.3)',
-        'glass': '0 8px 32px rgba(0, 0, 0, 0.3)',
-        'glass-lg': '0 16px 48px rgba(0, 0, 0, 0.4)',
+        'glass': '0 8px 32px var(--glass-shadow, rgba(0, 0, 0, 0.3))',
+        'glass-lg': '0 16px 48px var(--glass-shadow, rgba(0, 0, 0, 0.4))',
       },
     },
   },
@@ -140,23 +147,23 @@ const config: Config = {
     plugin(function ({ addUtilities }) {
       addUtilities({
         '.glass': {
-          background: 'rgba(255, 255, 255, 0.05)',
+          background: 'var(--glass-bg)',
           backdropFilter: 'blur(12px)',
           '-webkit-backdrop-filter': 'blur(12px)',
-          border: '1px solid rgba(255, 255, 255, 0.1)',
+          border: '1px solid var(--glass-border)',
         },
         '.glass-strong': {
-          background: 'rgba(255, 255, 255, 0.1)',
+          background: 'var(--glass-bg-strong)',
           backdropFilter: 'blur(20px)',
           '-webkit-backdrop-filter': 'blur(20px)',
-          border: '1px solid rgba(255, 255, 255, 0.15)',
+          border: '1px solid var(--glass-border-strong)',
         },
         '.glass-card': {
-          background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%)',
+          background: 'linear-gradient(135deg, var(--glass-bg) 0%, rgba(255, 255, 255, 0.02) 100%)',
           backdropFilter: 'blur(16px)',
           '-webkit-backdrop-filter': 'blur(16px)',
-          border: '1px solid rgba(255, 255, 255, 0.08)',
-          boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)',
+          border: '1px solid var(--glass-border)',
+          boxShadow: '0 8px 32px var(--glass-shadow)',
         },
         '.gradient-text': {
           background: 'linear-gradient(135deg, #7C3AED, #06B6D4, #EC4899)',

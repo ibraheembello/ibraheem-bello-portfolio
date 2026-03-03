@@ -57,7 +57,7 @@ export default function Hero() {
           className="inline-flex items-center gap-2 glass rounded-full px-5 py-2 mb-8"
         >
           <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
-          <span className="text-sm text-gray-300 font-body">Available for opportunities</span>
+          <span className="text-sm text-foreground-secondary font-body">Available for opportunities</span>
         </motion.div>
 
         {/* Name */}
@@ -67,7 +67,7 @@ export default function Hero() {
           animate="visible"
           className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-heading font-bold mb-6"
         >
-          <span className="text-white">Hi, I&apos;m </span>
+          <span className="text-foreground">Hi, I&apos;m </span>
           <span className="gradient-text">Ibraheem Bello</span>
         </motion.h1>
 
@@ -76,7 +76,7 @@ export default function Hero() {
           variants={heroSubtitle}
           initial="hidden"
           animate="visible"
-          className="text-xl md:text-2xl text-gray-300 font-body mb-4 max-w-3xl mx-auto h-9"
+          className="text-xl md:text-2xl text-foreground-secondary font-body mb-4 max-w-3xl mx-auto h-9"
         >
           <TypeWriter
             words={['Backend Developer', 'Engineering Leader', 'Open Source Contributor', 'API Architect']}
@@ -92,7 +92,7 @@ export default function Hero() {
           variants={heroSubtitle}
           initial="hidden"
           animate="visible"
-          className="text-base md:text-lg text-gray-400 font-body mb-10 max-w-2xl mx-auto"
+          className="text-base md:text-lg text-foreground-muted font-body mb-10 max-w-2xl mx-auto"
         >
           I build scalable RESTful APIs and microservices with Node.js, TypeScript,
           and modern cloud infrastructure. Turning complex problems into clean, elegant solutions.
@@ -125,8 +125,8 @@ export default function Hero() {
             target="_blank"
             rel="noopener noreferrer"
             whileHover={{ scale: 1.15, y: -3 }}
-            className="w-12 h-12 glass rounded-xl flex items-center justify-center text-gray-400
-                       hover:text-white hover:border-primary-500/30 hover:shadow-glow transition-all duration-300"
+            className="w-12 h-12 glass rounded-xl flex items-center justify-center text-foreground-muted
+                       hover:text-foreground hover:border-primary-500/30 hover:shadow-glow transition-all duration-300"
           >
             <FaGithub size={22} />
           </motion.a>
@@ -135,8 +135,8 @@ export default function Hero() {
             target="_blank"
             rel="noopener noreferrer"
             whileHover={{ scale: 1.15, y: -3 }}
-            className="w-12 h-12 glass rounded-xl flex items-center justify-center text-gray-400
-                       hover:text-white hover:border-accent-500/30 hover:shadow-glow-accent transition-all duration-300"
+            className="w-12 h-12 glass rounded-xl flex items-center justify-center text-foreground-muted
+                       hover:text-foreground hover:border-accent-500/30 hover:shadow-glow-accent transition-all duration-300"
           >
             <FaLinkedinIn size={22} />
           </motion.a>
@@ -153,7 +153,7 @@ export default function Hero() {
         <motion.div
           animate={{ y: [0, 10, 0] }}
           transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-          className="flex flex-col items-center gap-2 text-gray-500"
+          className="flex flex-col items-center gap-2 text-foreground-dim"
         >
           <span className="text-xs font-body">Scroll Down</span>
           <HiArrowDown size={18} />

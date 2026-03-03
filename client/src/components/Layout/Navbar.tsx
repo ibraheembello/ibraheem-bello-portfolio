@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { navbarVariants } from '@/lib/animations/variants';
 import { HiMenuAlt3, HiX } from 'react-icons/hi';
+import ThemeToggle from '@/components/ui/ThemeToggle';
 
 const navLinks = [
   { label: 'Home', href: '#home' },
@@ -9,6 +10,7 @@ const navLinks = [
   { label: 'Skills', href: '#skills' },
   { label: 'Projects', href: '#projects' },
   { label: 'Experience', href: '#experience' },
+  { label: 'Blog', href: '#blog' },
   { label: 'Contact', href: '#contact' },
 ];
 
@@ -74,8 +76,8 @@ export default function Navbar() {
               onClick={() => handleNavClick(link.href)}
               className={`relative px-4 py-2 text-sm font-body rounded-lg transition-all duration-300 ${
                 activeSection === link.href.slice(1)
-                  ? 'text-white'
-                  : 'text-gray-400 hover:text-white'
+                  ? 'text-foreground'
+                  : 'text-foreground-muted hover:text-foreground'
               }`}
             >
               {activeSection === link.href.slice(1) && (
@@ -90,21 +92,24 @@ export default function Navbar() {
           ))}
         </div>
 
-        {/* Resume Button (Desktop) */}
-        <motion.a
-          href="/api/resume/download"
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          className="hidden md:block btn-primary text-sm py-2 px-5"
-          download
-        >
-          Resume
-        </motion.a>
+        {/* Theme Toggle + Resume Button (Desktop) */}
+        <div className="hidden md:flex items-center gap-3">
+          <ThemeToggle />
+          <motion.a
+            href="/api/resume/download"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="btn-primary text-sm py-2 px-5"
+            download
+          >
+            Resume
+          </motion.a>
+        </div>
 
         {/* Mobile Menu Button */}
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
-          className="md:hidden text-white p-2 rounded-lg hover:bg-glass-light transition-colors"
+          className="md:hidden text-foreground p-2 rounded-lg hover:bg-glass-light transition-colors"
           aria-label="Toggle menu"
         >
           {mobileOpen ? <HiX size={24} /> : <HiMenuAlt3 size={24} />}
@@ -128,20 +133,23 @@ export default function Navbar() {
                   onClick={() => handleNavClick(link.href)}
                   className={`text-left px-4 py-3 rounded-xl font-body text-sm transition-all duration-300 ${
                     activeSection === link.href.slice(1)
-                      ? 'text-white bg-primary-600/20 border border-primary-500/30'
-                      : 'text-gray-400 hover:text-white hover:bg-glass-light'
+                      ? 'text-foreground bg-primary-600/20 border border-primary-500/30'
+                      : 'text-foreground-muted hover:text-foreground hover:bg-glass-light'
                   }`}
                 >
                   {link.label}
                 </button>
               ))}
-              <a
-                href="/api/resume/download"
-                className="btn-primary text-sm py-2 px-5 text-center mt-2"
-                download
-              >
-                Download Resume
-              </a>
+              <div className="flex items-center gap-3 mt-2">
+                <ThemeToggle />
+                <a
+                  href="/api/resume/download"
+                  className="btn-primary text-sm py-2 px-5 text-center flex-1"
+                  download
+                >
+                  Download Resume
+                </a>
+              </div>
             </div>
           </motion.div>
         )}

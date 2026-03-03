@@ -23,7 +23,7 @@ export default function Button({
   const styles = {
     primary: 'btn-primary',
     outline: 'btn-outline',
-    ghost: 'px-6 py-2 text-gray-300 hover:text-white hover:bg-glass-light rounded-lg transition-all duration-300',
+    ghost: 'px-6 py-2 text-foreground-secondary hover:text-foreground hover:bg-glass-light rounded-lg transition-all duration-300',
   };
 
   const content = (

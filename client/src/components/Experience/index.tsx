@@ -87,7 +87,7 @@ export default function Experience() {
               initial="hidden"
               animate={controls}
               variants={fadeUp}
-              className="text-xl font-heading font-semibold text-white mb-8 flex items-center gap-3"
+              className="text-xl font-heading font-semibold text-foreground mb-8 flex items-center gap-3"
             >
               <HiBriefcase className="text-primary-400" size={24} />
               Work Experience
@@ -120,10 +120,10 @@ export default function Experience() {
                         </span>
                       )}
                     </div>
-                    <h4 className="text-lg font-heading font-semibold text-white">{exp.role}</h4>
+                    <h4 className="text-lg font-heading font-semibold text-foreground">{exp.role}</h4>
                     <p className="text-primary-400 font-body text-sm mb-2">{exp.company}</p>
 
-                    <div className="flex flex-wrap gap-4 text-xs text-gray-500 font-body mb-3">
+                    <div className="flex flex-wrap gap-4 text-xs text-foreground-dim font-body mb-3">
                       <span className="flex items-center gap-1">
                         <HiCalendar size={14} />
                         {formatDate(exp.startDate)} &mdash; {exp.current ? 'Present' : formatDate(exp.endDate!)}
@@ -134,7 +134,7 @@ export default function Experience() {
                       </span>
                     </div>
 
-                    <p className="text-gray-400 text-sm font-body leading-relaxed mb-4">
+                    <p className="text-foreground-muted text-sm font-body leading-relaxed mb-4">
                       {exp.description}
                     </p>
 
@@ -142,7 +142,7 @@ export default function Experience() {
                       {exp.technologies.map((tech) => (
                         <span
                           key={tech}
-                          className="px-2 py-0.5 rounded text-xs bg-glass-light text-gray-300 border border-glass-border"
+                          className="px-2 py-0.5 rounded text-xs bg-glass-light text-foreground-secondary border border-glass-border"
                         >
                           {tech}
                         </span>
@@ -161,7 +161,7 @@ export default function Experience() {
               whileInView="visible"
               viewport={{ once: true }}
               variants={fadeUp}
-              className="text-xl font-heading font-semibold text-white mb-8 flex items-center gap-3"
+              className="text-xl font-heading font-semibold text-foreground mb-8 flex items-center gap-3"
             >
               <HiCalendar className="text-accent-400" size={24} />
               Certifications & Awards
@@ -189,13 +189,13 @@ export default function Experience() {
                       <div className="flex-grow">
                         <div className="flex items-start justify-between">
                           <div>
-                            <h4 className="text-base font-heading font-semibold text-white group-hover:text-accent-300 transition-colors">
+                            <h4 className="text-base font-heading font-semibold text-foreground group-hover:text-accent-300 transition-colors">
                               {cert.title}
                             </h4>
                             <p className="text-accent-400 text-sm font-body">{cert.issuer}</p>
-                            <p className="text-gray-400 text-sm font-body mt-1">{cert.description}</p>
+                            <p className="text-foreground-muted text-sm font-body mt-1">{cert.description}</p>
                           </div>
-                          <span className="text-xs text-gray-500 font-body whitespace-nowrap ml-4">
+                          <span className="text-xs text-foreground-dim font-body whitespace-nowrap ml-4">
                             {cert.date}
                           </span>
                         </div>

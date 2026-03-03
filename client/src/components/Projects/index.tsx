@@ -38,8 +38,8 @@ export default function Projects() {
               onClick={() => setFilter(cat)}
               className={`relative px-5 py-2 rounded-xl font-body text-sm transition-all duration-300 ${
                 filter === cat
-                  ? 'text-white'
-                  : 'text-gray-400 hover:text-white glass hover:bg-glass-strong'
+                  ? 'text-foreground'
+                  : 'text-foreground-muted hover:text-foreground glass hover:bg-glass-strong'
               }`}
             >
               {filter === cat && (
@@ -111,10 +111,10 @@ export default function Projects() {
                 </div>
 
                 {/* Title and description */}
-                <h3 className="text-xl font-heading font-semibold text-white mb-3 group-hover:gradient-text transition-all duration-300">
+                <h3 className="text-xl font-heading font-semibold text-foreground mb-3 group-hover:gradient-text transition-all duration-300">
                   {project.title}
                 </h3>
-                <p className="text-gray-400 text-sm font-body leading-relaxed mb-5 flex-grow">
+                <p className="text-foreground-muted text-sm font-body leading-relaxed mb-5 flex-grow">
                   {project.description}
                 </p>
 
@@ -124,7 +124,7 @@ export default function Projects() {
                     <span
                       key={tech}
                       className="px-2.5 py-1 rounded-md text-xs font-body
-                                 bg-glass-light text-gray-300 border border-glass-border"
+                                 bg-glass-light text-foreground-secondary border border-glass-border"
                     >
                       {tech}
                     </span>
@@ -138,7 +138,7 @@ export default function Projects() {
                     target="_blank"
                     rel="noopener noreferrer"
                     whileHover={{ scale: 1.1 }}
-                    className="flex items-center gap-2 text-gray-400 hover:text-white text-sm font-body transition-colors"
+                    className="flex items-center gap-2 text-foreground-muted hover:text-foreground text-sm font-body transition-colors"
                   >
                     <FaGithub size={16} />
                     Code
@@ -149,7 +149,7 @@ export default function Projects() {
                       target="_blank"
                       rel="noopener noreferrer"
                       whileHover={{ scale: 1.1 }}
-                      className="flex items-center gap-2 text-gray-400 hover:text-accent-400 text-sm font-body transition-colors"
+                      className="flex items-center gap-2 text-foreground-muted hover:text-accent-400 text-sm font-body transition-colors"
                     >
                       <FaExternalLinkAlt size={14} />
                       Live Demo

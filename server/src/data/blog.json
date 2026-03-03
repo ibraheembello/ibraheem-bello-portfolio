@@ -1,0 +1,24 @@
+[
+  {
+    "id": 1,
+    "title": "Deploying NestJS Microservices to Azure Container Apps",
+    "description": "A comprehensive guide on deploying NestJS microservices to Azure Container Apps, covering Docker setup, CI/CD pipelines, and production monitoring.",
+    "url": "https://dev.to/ibraheembello/deploying-nestjs-microservices-to-azure-container-apps-1jh4",
+    "publishedAt": "2025-11-12",
+    "readingTime": "11 min read",
+    "tags": ["Azure", "NestJS", "Microservices", "Docker"],
+    "coverImage": "https://media2.dev.to/dynamic/image/width=1000,height=420,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Fwsckm8n2562fkfbikx8m.png",
+    "platform": "dev.to"
+  },
+  {
+    "id": 2,
+    "title": "GitHub Issue Monitor AI Agent with Mastra",
+    "description": "How I built an intelligent GitHub Issue Monitor using Mastra AI framework and Telex.im for automated issue tracking and smart notifications.",
+    "url": "https://dev.to/ibraheembello/github-issue-monitor-ai-agent-with-mastra-334c",
+    "publishedAt": "2025-11-02",
+    "readingTime": "6 min read",
+    "tags": ["AI", "Agents", "Azure", "TypeScript"],
+    "coverImage": null,
+    "platform": "dev.to"
+  }
+]

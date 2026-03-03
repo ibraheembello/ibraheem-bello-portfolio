@@ -2,6 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 import projects from '../data/projects.json';
 import skills from '../data/skills.json';
 import experience from '../data/experience.json';
+import blog from '../data/blog.json';
 
 export const getProjects = (_req: Request, res: Response, next: NextFunction): void => {
   try {
@@ -22,6 +23,14 @@ export const getSkills = (_req: Request, res: Response, next: NextFunction): voi
 export const getExperience = (_req: Request, res: Response, next: NextFunction): void => {
   try {
     res.status(200).json({ success: true, data: experience });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const getBlog = (_req: Request, res: Response, next: NextFunction): void => {
+  try {
+    res.status(200).json({ success: true, data: blog });
   } catch (error) {
     next(error);
   }

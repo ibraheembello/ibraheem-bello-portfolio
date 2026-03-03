@@ -73,19 +73,19 @@ export default function About() {
             animate={controls}
             variants={slideInRight}
           >
-            <p className="text-gray-300 font-body text-lg leading-relaxed mb-6">
-              I&apos;m <span className="text-white font-semibold">Ibraheem Bello</span>, a
+            <p className="text-foreground-secondary font-body text-lg leading-relaxed mb-6">
+              I&apos;m <span className="text-foreground font-semibold">Ibraheem Bello</span>, a
               backend engineer based in <span className="text-accent-400">Lagos, Nigeria</span>.
               I specialize in building scalable web applications using Node.js, TypeScript, and modern
               cloud infrastructure.
             </p>
-            <p className="text-gray-400 font-body leading-relaxed mb-6">
+            <p className="text-foreground-muted font-body leading-relaxed mb-6">
               Currently pursuing a Backend Engineering Diploma at AltSchool Africa where I serve as
               Vice President of the Baraka Cohort, leading peer learning for 100+ students. As an HNG
               Internship Finalist, I demonstrated expertise in TypeScript, NestJS, and TypeORM under
               intense sprint cycles.
             </p>
-            <p className="text-gray-400 font-body leading-relaxed">
+            <p className="text-foreground-muted font-body leading-relaxed">
               My philosophy is simple: write clean, well-tested code that solves real problems.
               I believe in the power of open source, continuous learning, and building communities
               that lift each other up.
@@ -107,10 +107,10 @@ export default function About() {
                 <div className={`${item.color} mb-4 flex justify-center`}>
                   {item.icon}
                 </div>
-                <h3 className="text-white font-heading font-semibold text-lg mb-2">
+                <h3 className="text-foreground font-heading font-semibold text-lg mb-2">
                   {item.title}
                 </h3>
-                <p className="text-gray-400 text-sm font-body">{item.description}</p>
+                <p className="text-foreground-muted text-sm font-body">{item.description}</p>
               </GlassCard>
             </motion.div>
           ))}

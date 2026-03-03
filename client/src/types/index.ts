@@ -35,6 +35,18 @@ export interface Experience {
   technologies: string[];
 }
 
+export interface BlogPost {
+  id: number;
+  title: string;
+  description: string;
+  url: string;
+  publishedAt: string;
+  readingTime: string;
+  tags: string[];
+  coverImage: string | null;
+  platform: string;
+}
+
 export interface ContactFormData {
   name: string;
   email: string;

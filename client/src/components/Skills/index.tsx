@@ -53,8 +53,8 @@ export default function Skills() {
               onClick={() => setActiveCategory(cat)}
               className={`relative px-5 py-2.5 rounded-xl font-body text-sm font-medium transition-all duration-300 ${
                 activeCategory === cat
-                  ? 'text-white'
-                  : 'text-gray-400 hover:text-white glass hover:bg-glass-strong'
+                  ? 'text-foreground'
+                  : 'text-foreground-muted hover:text-foreground glass hover:bg-glass-strong'
               }`}
             >
               {activeCategory === cat && (
@@ -101,7 +101,7 @@ export default function Skills() {
             return (
               <div key={level} className="flex items-center gap-2">
                 <div className={`w-2 h-2 rounded-full bg-gradient-to-r ${colors[level]}`} />
-                <span className="text-xs text-gray-500 font-body">{level}</span>
+                <span className="text-xs text-foreground-dim font-body">{level}</span>
               </div>
             );
           })}

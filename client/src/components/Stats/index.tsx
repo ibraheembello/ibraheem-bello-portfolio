@@ -106,10 +106,10 @@ export default function Stats() {
               <div className={`${stat.color} mb-3 flex justify-center group-hover:scale-110 transition-transform duration-300`}>
                 {stat.icon}
               </div>
-              <div className="text-3xl md:text-4xl font-heading font-bold text-white mb-1">
+              <div className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-1">
                 <AnimatedCounter target={stat.value} suffix={stat.suffix} />
               </div>
-              <p className="text-gray-500 text-sm font-body">{stat.label}</p>
+              <p className="text-foreground-dim text-sm font-body">{stat.label}</p>
             </motion.div>
           ))}
         </motion.div>
