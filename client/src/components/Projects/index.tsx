@@ -74,10 +74,10 @@ export default function Projects() {
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                     loading="lazy"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-background-card/60 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
 
                   {/* Hover overlay */}
-                  <div className="absolute inset-0 bg-background-dark/70 backdrop-blur-sm flex items-center justify-center gap-3
+                  <div className="absolute inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center gap-3
                                   opacity-0 group-hover:opacity-100 transition-all duration-300">
                     <a
                       href={project.githubUrl}

@@ -5,26 +5,26 @@
 @layer base {
   /* Light theme (base) */
   :root {
-    --bg-page: #f8f9fc;
-    --bg-card: #ffffff;
-    --bg-surface: #f0f2f8;
-    --bg-elevated: #ffffff;
-    --bg-hover: #e8eaf2;
+    --bg-page: #e8eaf4;
+    --bg-card: #f4f5fb;
+    --bg-surface: #dde0ee;
+    --bg-elevated: #f8f9fc;
+    --bg-hover: #d4d7e8;
     --fg-primary: #1a1a2e;
-    --fg-secondary: #4a4a6a;
-    --fg-muted: #6a6a8a;
-    --fg-dim: #9a9ab0;
-    --glass-bg: rgba(255, 255, 255, 0.7);
-    --glass-bg-medium: rgba(255, 255, 255, 0.75);
-    --glass-bg-strong: rgba(255, 255, 255, 0.85);
-    --glass-border: rgba(0, 0, 0, 0.08);
-    --glass-border-strong: rgba(0, 0, 0, 0.12);
-    --glass-shadow: rgba(0, 0, 0, 0.08);
-    --scrollbar-track: #f0f2f8;
-    --scrollbar-thumb: rgba(124, 58, 237, 0.3);
-    --gradient-orb-1: rgba(124, 58, 237, 0.06);
-    --gradient-orb-2: rgba(6, 182, 212, 0.04);
-    --gradient-orb-3: rgba(236, 72, 153, 0.03);
+    --fg-secondary: #3a3a5c;
+    --fg-muted: #5a5a7a;
+    --fg-dim: #8888a4;
+    --glass-bg: rgba(255, 255, 255, 0.55);
+    --glass-bg-medium: rgba(255, 255, 255, 0.6);
+    --glass-bg-strong: rgba(255, 255, 255, 0.7);
+    --glass-border: rgba(100, 80, 160, 0.15);
+    --glass-border-strong: rgba(100, 80, 160, 0.2);
+    --glass-shadow: rgba(80, 60, 140, 0.1);
+    --scrollbar-track: #e0e2ee;
+    --scrollbar-thumb: rgba(124, 58, 237, 0.35);
+    --gradient-orb-1: rgba(124, 58, 237, 0.08);
+    --gradient-orb-2: rgba(6, 182, 212, 0.06);
+    --gradient-orb-3: rgba(236, 72, 153, 0.05);
   }
 
   /* Dark theme */

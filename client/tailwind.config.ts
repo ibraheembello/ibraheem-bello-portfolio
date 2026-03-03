@@ -159,7 +159,7 @@ const config: Config = {
           border: '1px solid var(--glass-border-strong)',
         },
         '.glass-card': {
-          background: 'linear-gradient(135deg, var(--glass-bg) 0%, rgba(255, 255, 255, 0.02) 100%)',
+          background: 'var(--glass-bg)',
           backdropFilter: 'blur(16px)',
           '-webkit-backdrop-filter': 'blur(16px)',
           border: '1px solid var(--glass-border)',
