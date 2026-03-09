@@ -1,6 +1,6 @@
 # Portfolio Server
 
-Express.js backend API serving portfolio data and handling the contact form.
+Express.js backend API serving portfolio data, blog articles, and handling the contact form.
 
 ## Stack
 
@@ -10,7 +10,7 @@ Express.js backend API serving portfolio data and handling the contact form.
 - **express-rate-limit** for API protection
 - **Helmet** for security headers
 - **Winston** for structured logging
-- **Jest + Supertest** for testing
+- **Jest + Supertest** for testing (29 tests)
 
 ## Structure
 
@@ -20,7 +20,7 @@ src/
 │   └── env.ts              # Typed environment config
 ├── controllers/
 │   ├── contactController.ts # Contact form handler
-│   └── projectController.ts # Data endpoints handler
+│   └── projectController.ts # Data + blog endpoints handler
 ├── data/
 │   ├── experience.json     # Work experience entries
 │   ├── projects.json       # Project showcase data
@@ -31,7 +31,7 @@ src/
 ├── routes/
 │   ├── contactRoutes.ts    # POST /api/contact
 │   ├── healthRoutes.ts     # GET /api/health
-│   ├── projectRoutes.ts    # GET /api/projects, /skills, /experience
+│   ├── projectRoutes.ts    # GET /api/projects, /skills, /experience, /blog
 │   └── resumeRoutes.ts     # GET /api/resume/download
 ├── services/
 │   └── emailService.ts     # Nodemailer email transport
@@ -65,10 +65,11 @@ npm test        # Run Jest (29 tests)
 ### Health
 - `GET /api/health` — Returns status, timestamp, uptime
 
-### Projects
-- `GET /api/projects` — All projects with metadata
-- `GET /api/skills` — Skills grouped by category
-- `GET /api/experience` — Work experience entries
+### Projects & Data
+- `GET /api/projects` — All projects with metadata (title, description, tech stack, URLs, images)
+- `GET /api/skills` — Skills grouped by category (Languages, Backend, Databases, DevOps)
+- `GET /api/experience` — Work experience entries with dates and descriptions
+- `GET /api/blog` — Blog articles sourced from dev.to
 
 ### Contact
 - `POST /api/contact` — Send email via contact form
