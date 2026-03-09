@@ -6,6 +6,9 @@ import type { Project } from '@/types';
 
 function DesktopGallery({ projects }: { projects: Project[] }) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const cardCount = projects.length;
+  const scrollPerCard = 70; // vh per card transition
+
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ['start start', 'end end'],
@@ -14,13 +17,16 @@ function DesktopGallery({ projects }: { projects: Project[] }) {
   const x = useTransform(
     scrollYProgress,
     [0, 1],
-    ['0%', `-${(projects.length - 1) * 100}%`]
+    ['0%', `-${(cardCount - 1) * 100}%`]
   );
+
+  // Container height = 100vh (viewport) + (n-1) * scrollPerCard
+  const containerHeight = 100 + (cardCount - 1) * scrollPerCard;
 
   return (
     <div
       ref={containerRef}
-      style={{ height: `${(projects.length + 1) * 50}vh` }}
+      style={{ height: `${containerHeight}vh` }}
     >
       <div className="sticky top-0 h-screen flex items-center overflow-hidden">
         <motion.div
