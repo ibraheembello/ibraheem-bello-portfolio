@@ -119,19 +119,21 @@ export default function Projects() {
               >
                 <GlassCard glow="primary" className="h-full flex flex-col group" hover={false} data-cursor-view>
                   {/* Project image with clip-path reveal */}
-                  <motion.div
-                    initial={{ clipPath: 'inset(100% 0% 0% 0%)' }}
-                    whileInView={{ clipPath: 'inset(0% 0% 0% 0%)' }}
-                    viewport={{ once: true, amount: 0.1 }}
-                    transition={{ duration: 0.7, delay: i * 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
-                    className="relative h-48 rounded-xl overflow-hidden mb-5 bg-gradient-to-br from-background-surface to-background-card"
-                  >
-                    <img
-                      src={project.image}
-                      alt={project.title}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                      loading="lazy"
-                    />
+                  <div className="relative h-48 rounded-xl overflow-hidden mb-5 bg-gradient-to-br from-background-surface to-background-card">
+                    <motion.div
+                      initial={{ clipPath: 'inset(100% 0% 0% 0%)' }}
+                      whileInView={{ clipPath: 'inset(0% 0% 0% 0%)' }}
+                      viewport={{ once: true, amount: 0.1 }}
+                      transition={{ duration: 0.7, delay: i * 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
+                      className="absolute inset-0"
+                    >
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                        loading="lazy"
+                      />
+                    </motion.div>
                     <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
 
                     {/* Hover overlay */}
@@ -166,7 +168,7 @@ export default function Projects() {
                         Featured
                       </div>
                     )}
-                  </motion.div>
+                  </div>
 
                   {/* Title and description */}
                   <h3 className="text-xl font-heading font-semibold text-foreground mb-3 group-hover:gradient-text transition-all duration-300">

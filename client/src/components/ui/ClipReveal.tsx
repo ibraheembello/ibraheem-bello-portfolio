@@ -36,15 +36,16 @@ export default function ClipReveal({
   duration = 0.8,
 }: ClipRevealProps) {
   return (
-    <motion.div
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.1 }}
-      variants={clipVariants[direction]}
-      transition={{ duration, delay, ease: [0.25, 0.46, 0.45, 0.94] }}
-      className={className}
-    >
-      {children}
-    </motion.div>
+    <div className={`relative ${className}`}>
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.1 }}
+        variants={clipVariants[direction]}
+        transition={{ duration, delay, ease: [0.25, 0.46, 0.45, 0.94] }}
+      >
+        {children}
+      </motion.div>
+    </div>
   );
 }

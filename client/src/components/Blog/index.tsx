@@ -58,21 +58,23 @@ export default function Blog() {
                 <GlassCard glow="accent" className="h-full flex flex-col group">
                   {/* Cover image with clip reveal */}
                   {post.coverImage && (
-                    <motion.div
-                      initial={{ clipPath: 'inset(0% 100% 0% 0%)' }}
-                      whileInView={{ clipPath: 'inset(0% 0% 0% 0%)' }}
-                      viewport={{ once: true, amount: 0.1 }}
-                      transition={{ duration: 0.7, delay: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
-                      className="relative h-44 rounded-xl overflow-hidden mb-5 bg-gradient-to-br from-background-surface to-background-card"
-                    >
-                      <img
-                        src={post.coverImage}
-                        alt={post.title}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                        loading="lazy"
-                      />
+                    <div className="relative h-44 rounded-xl overflow-hidden mb-5 bg-gradient-to-br from-background-surface to-background-card">
+                      <motion.div
+                        initial={{ clipPath: 'inset(0% 100% 0% 0%)' }}
+                        whileInView={{ clipPath: 'inset(0% 0% 0% 0%)' }}
+                        viewport={{ once: true, amount: 0.1 }}
+                        transition={{ duration: 0.7, delay: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
+                        className="absolute inset-0"
+                      >
+                        <img
+                          src={post.coverImage}
+                          alt={post.title}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                          loading="lazy"
+                        />
+                      </motion.div>
                       <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-                    </motion.div>
+                    </div>
                   )}
 
                   {/* No cover image fallback */}
