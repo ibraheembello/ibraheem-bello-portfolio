@@ -27,7 +27,7 @@ export default function Blog() {
   if (posts.length === 0) return null;
 
   return (
-    <section id="blog" className="section-padding">
+    <section id="blog" className="section-padding glow-blog">
       <div className="container-max">
         <SectionHeading
           title="Blog & Writing"

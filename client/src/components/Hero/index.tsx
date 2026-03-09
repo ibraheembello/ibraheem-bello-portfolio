@@ -40,7 +40,7 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden glow-hero"
     >
       {/* 3D Background or CSS Fallback */}
       {!isChecking && (

@@ -44,7 +44,7 @@ export default function About() {
   const bioY = useTransform(scrollYProgress, [0, 1], [30, -30]);
 
   return (
-    <section id="about" className="section-padding" ref={sectionRef}>
+    <section id="about" className="section-padding glow-about" ref={sectionRef}>
       <div className="container-max">
         <SectionHeading
           title="About Me"

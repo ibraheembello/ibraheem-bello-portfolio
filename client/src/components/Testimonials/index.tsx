@@ -46,7 +46,7 @@ const testimonials: Testimonial[] = [
 
 export default function Testimonials() {
   return (
-    <section id="testimonials" className="section-padding">
+    <section id="testimonials" className="section-padding glow-testimonials">
       <div className="container-max">
         <SectionHeading
           title="What People Say"

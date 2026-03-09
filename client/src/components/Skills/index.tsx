@@ -30,7 +30,7 @@ export default function Skills() {
   const categories = Object.keys(categoryLabels);
 
   return (
-    <section id="skills" className="section-padding">
+    <section id="skills" className="section-padding glow-skills">
       <div className="container-max">
         <SectionHeading
           title="Skills & Technologies"

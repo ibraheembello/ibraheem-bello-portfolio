@@ -79,7 +79,7 @@ export default function Experience() {
   }, []);
 
   return (
-    <section id="experience" className="section-padding" ref={sectionRef}>
+    <section id="experience" className="section-padding glow-experience" ref={sectionRef}>
       <div className="container-max">
         <SectionHeading
           title="Experience & Certifications"

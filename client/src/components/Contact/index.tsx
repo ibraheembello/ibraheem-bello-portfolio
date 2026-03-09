@@ -60,7 +60,7 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="section-padding">
+    <section id="contact" className="section-padding glow-contact">
       <div className="container-max">
         <SectionHeading
           title="Get In Touch"

@@ -18,7 +18,6 @@ import Marquee from '@/components/ui/Marquee';
 import LoadingScreen from '@/components/ui/LoadingScreen';
 import NoiseOverlay from '@/components/ui/NoiseOverlay';
 import SectionConnector from '@/components/ui/SectionConnector';
-import AmbientOrbs from '@/components/ui/AmbientOrbs';
 
 export default function App() {
   const [loading, setLoading] = useState(true);
@@ -30,7 +29,6 @@ export default function App() {
 
   return (
     <LenisProvider>
-      <AmbientOrbs />
       <CustomCursor />
       <NoiseOverlay />
       <AnimatePresence mode="wait">

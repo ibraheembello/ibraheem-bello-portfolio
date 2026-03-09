@@ -66,7 +66,7 @@ export default function Projects() {
   const filtered = filter === 'All' ? projects : projects.filter((p) => p.category === filter);
 
   return (
-    <section id="projects" className="section-padding">
+    <section id="projects" className="section-padding glow-projects">
       <div className="container-max">
         <SectionHeading
           title="Featured Projects"
