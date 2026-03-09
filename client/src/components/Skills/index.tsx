@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { staggerContainer, staggerItem, fadeUp } from '@/lib/animations/variants';
-import { useScrollReveal } from '@/lib/animations/hooks';
 import SectionHeading from '@/components/ui/SectionHeading';
 import SkillBadge from '@/components/ui/SkillBadge';
 import type { SkillsData } from '@/types';
@@ -16,7 +15,6 @@ const categoryLabels: Record<string, { label: string; color: string }> = {
 export default function Skills() {
   const [skills, setSkills] = useState<SkillsData | null>(null);
   const [activeCategory, setActiveCategory] = useState<string>('languages');
-  const { ref, controls } = useScrollReveal();
 
   useEffect(() => {
     fetch('/api/skills')
@@ -41,9 +39,9 @@ export default function Skills() {
 
         {/* Category tabs */}
         <motion.div
-          ref={ref}
           initial="hidden"
-          animate={controls}
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
           variants={fadeUp}
           className="flex flex-wrap justify-center gap-3 mb-12"
         >
@@ -70,19 +68,22 @@ export default function Skills() {
         </motion.div>
 
         {/* Skills grid */}
-        <motion.div
-          key={activeCategory}
-          initial="hidden"
-          animate="visible"
-          variants={staggerContainer}
-          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 max-w-4xl mx-auto"
-        >
-          {skills[activeCategory as keyof SkillsData].map((skill) => (
-            <motion.div key={skill.name} variants={staggerItem}>
-              <SkillBadge name={skill.name} level={skill.level} icon={skill.icon} />
-            </motion.div>
-          ))}
-        </motion.div>
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeCategory}
+            initial="hidden"
+            animate="visible"
+            exit="hidden"
+            variants={staggerContainer}
+            className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 max-w-4xl mx-auto"
+          >
+            {skills[activeCategory as keyof SkillsData].map((skill) => (
+              <motion.div key={skill.name} variants={staggerItem}>
+                <SkillBadge name={skill.name} level={skill.level} icon={skill.icon} />
+              </motion.div>
+            ))}
+          </motion.div>
+        </AnimatePresence>
 
         {/* Level legend */}
         <motion.div
