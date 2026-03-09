@@ -44,26 +44,70 @@ export default function About() {
         />
 
         <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Photo placeholder + Bio */}
+          {/* Animated IB Logo */}
           <motion.div
             ref={ref}
             initial="hidden"
             animate={controls}
             variants={slideInLeft}
           >
-            <div className="relative">
-              {/* Photo frame with glow */}
-              <div className="relative w-64 h-64 md:w-80 md:h-80 mx-auto lg:mx-0">
-                <div className="absolute inset-0 bg-gradient-to-br from-primary-500 via-accent-500 to-highlight-500 rounded-3xl opacity-20 blur-xl animate-pulse-glow" />
-                <div className="relative glass-card rounded-3xl w-full h-full overflow-hidden flex items-center justify-center">
-                  <img
-                    src="/images/profile/ibraheem.webp"
-                    alt="Ibraheem Bello"
-                    className="w-full h-full object-cover"
-                    loading="lazy"
-                  />
-                </div>
-              </div>
+            <div className="relative w-64 h-64 md:w-80 md:h-80 mx-auto lg:mx-0">
+              {/* Outer glow pulse */}
+              <div className="absolute inset-0 bg-gradient-to-br from-primary-500 via-accent-500 to-highlight-500 rounded-3xl opacity-20 blur-xl animate-pulse-glow" />
+
+              {/* Spinning border ring */}
+              <motion.div
+                animate={{ rotate: 360 }}
+                transition={{ duration: 8, repeat: Infinity, ease: 'linear' }}
+                className="absolute -inset-2 rounded-3xl opacity-30"
+                style={{
+                  background: 'conic-gradient(from 0deg, #7c3aed, #06b6d4, #ec4899, #7c3aed)',
+                  WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
+                  WebkitMaskComposite: 'xor',
+                  maskComposite: 'exclude',
+                  padding: '2px',
+                }}
+              />
+
+              {/* IB Logo card */}
+              <motion.div
+                animate={{
+                  boxShadow: [
+                    '0 0 30px rgba(124, 58, 237, 0.2)',
+                    '0 0 60px rgba(6, 182, 212, 0.3)',
+                    '0 0 30px rgba(236, 72, 153, 0.2)',
+                  ],
+                }}
+                transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
+                className="relative glass-card rounded-3xl w-full h-full overflow-hidden flex items-center justify-center"
+              >
+                {/* Background grid pattern */}
+                <div
+                  className="absolute inset-0 opacity-5"
+                  style={{
+                    backgroundImage: 'linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)',
+                    backgroundSize: '20px 20px',
+                  }}
+                />
+
+                {/* IB text */}
+                <motion.div
+                  animate={{ scale: [1, 1.05, 1] }}
+                  transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+                  className="text-center"
+                >
+                  <span className="text-6xl md:text-7xl font-heading font-bold gradient-text">
+                    {'<IB />'}
+                  </span>
+                  <motion.p
+                    animate={{ opacity: [0.4, 0.7, 0.4] }}
+                    transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
+                    className="text-foreground-dim text-sm font-mono mt-3"
+                  >
+                    backend.engineer
+                  </motion.p>
+                </motion.div>
+              </motion.div>
             </div>
           </motion.div>
 
@@ -77,18 +121,20 @@ export default function About() {
               I&apos;m <span className="text-foreground font-semibold">Ibraheem Bello</span>, a
               backend engineer based in <span className="text-accent-400">Lagos, Nigeria</span>.
               I specialize in building scalable web applications using Node.js, TypeScript, and modern
-              cloud infrastructure.
+              cloud infrastructure. From RESTful APIs to microservices, I design systems that handle
+              real-world traffic and complexity.
             </p>
             <p className="text-foreground-muted font-body leading-relaxed mb-6">
               Currently pursuing a Backend Engineering Diploma at AltSchool Africa where I serve as
               Vice President of the Baraka Cohort, leading peer learning for 100+ students. As an HNG
-              Internship Finalist, I demonstrated expertise in TypeScript, NestJS, and TypeORM under
-              intense sprint cycles.
+              Internship Finalist (top 450 of 12,362), I demonstrated expertise in TypeScript, NestJS,
+              and TypeORM under intense sprint cycles — shipping production features on tight deadlines.
             </p>
             <p className="text-foreground-muted font-body leading-relaxed">
               My philosophy is simple: write clean, well-tested code that solves real problems.
               I believe in the power of open source, continuous learning, and building communities
-              that lift each other up.
+              that lift each other up. Every API endpoint I build, every system I architect — it&apos;s
+              about creating lasting value, not just shipping code.
             </p>
           </motion.div>
         </div>
