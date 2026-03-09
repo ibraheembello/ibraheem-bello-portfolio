@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import SectionHeading from '@/components/ui/SectionHeading';
+import ParallaxBg from '@/components/ui/ParallaxBg';
 import GlassCard from '@/components/ui/GlassCard';
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
 import type { Project } from '@/types';
@@ -66,8 +67,9 @@ export default function Projects() {
   const filtered = filter === 'All' ? projects : projects.filter((p) => p.category === filter);
 
   return (
-    <section id="projects" className="section-padding glow-projects">
-      <div className="container-max">
+    <section id="projects" className="section-padding glow-projects relative">
+      <ParallaxBg src="/images/backgrounds/bg-projects.webp" speed={0.25} overlay={0.8} />
+      <div className="container-max relative z-10">
         <SectionHeading
           title="Featured Projects"
           subtitle="A showcase of the applications and systems I've built."

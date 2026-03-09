@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { fadeUp, staggerContainer, staggerItem, slideInLeft } from '@/lib/animations/variants';
 import { useScrollReveal } from '@/lib/animations/hooks';
+import ParallaxBg from '@/components/ui/ParallaxBg';
 import SectionHeading from '@/components/ui/SectionHeading';
 import GlassCard from '@/components/ui/GlassCard';
 import { HiBriefcase, HiCalendar, HiLocationMarker } from 'react-icons/hi';
@@ -79,8 +80,9 @@ export default function Experience() {
   }, []);
 
   return (
-    <section id="experience" className="section-padding glow-experience" ref={sectionRef}>
-      <div className="container-max">
+    <section id="experience" className="section-padding glow-experience relative" ref={sectionRef}>
+      <ParallaxBg src="/images/backgrounds/bg-experience.webp" speed={0.3} overlay={0.82} />
+      <div className="container-max relative z-10">
         <SectionHeading
           title="Experience & Certifications"
           subtitle="My professional journey and achievements in tech."

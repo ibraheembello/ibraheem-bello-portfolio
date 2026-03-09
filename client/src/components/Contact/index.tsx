@@ -7,6 +7,7 @@ import GlassCard from '@/components/ui/GlassCard';
 import Button from '@/components/ui/Button';
 import { HiMail, HiLocationMarker, HiPhone } from 'react-icons/hi';
 import { FaGithub, FaLinkedinIn, FaTwitter } from 'react-icons/fa';
+import ParallaxBg from '@/components/ui/ParallaxBg';
 
 interface FormState {
   name: string;
@@ -60,8 +61,9 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="section-padding glow-contact">
-      <div className="container-max">
+    <section id="contact" className="section-padding glow-contact relative">
+      <ParallaxBg src="/images/backgrounds/bg-contact.webp" speed={0.2} overlay={0.85} />
+      <div className="container-max relative z-10">
         <SectionHeading
           title="Get In Touch"
           subtitle="Have a project in mind or want to collaborate? I'd love to hear from you."

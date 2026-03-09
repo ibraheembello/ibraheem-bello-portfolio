@@ -2,12 +2,14 @@ import { lazy, Suspense } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { heroCta } from '@/lib/animations/variants';
 import { useGpuDetection } from '@/lib/animations/hooks';
+import { useLenis } from '@/contexts/LenisProvider';
 import Button from '@/components/ui/Button';
 import MagneticButton from '@/components/ui/MagneticButton';
 import TextScramble from '@/components/ui/TextScramble';
 import SplitText from '@/components/ui/SplitText';
 import { FaGithub, FaLinkedinIn } from 'react-icons/fa';
 import { HiArrowDown } from 'react-icons/hi';
+import ParallaxBg from '@/components/ui/ParallaxBg';
 
 const HeroScene = lazy(() => import('@/lib/three/HeroScene'));
 
@@ -28,13 +30,20 @@ function CssFallbackBackground() {
 
 export default function Hero() {
   const { canHandle3D, isChecking } = useGpuDetection();
+  const lenis = useLenis();
 
   const handleScrollToProjects = () => {
-    document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
+    const el = document.getElementById('projects');
+    if (el) {
+      lenis ? lenis.scrollTo(el, { offset: -80 }) : el.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   const handleScrollToContact = () => {
-    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+    const el = document.getElementById('contact');
+    if (el) {
+      lenis ? lenis.scrollTo(el, { offset: -80 }) : el.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   return (
@@ -42,7 +51,10 @@ export default function Hero() {
       id="home"
       className="relative min-h-screen flex items-center justify-center overflow-hidden glow-hero"
     >
-      {/* 3D Background or CSS Fallback */}
+      {/* Parallax background image */}
+      <ParallaxBg src="/images/backgrounds/bg-hero.webp" speed={0.2} overlay={0.7} />
+
+      {/* 3D Background or CSS Fallback (layered on top of parallax) */}
       {!isChecking && (
         canHandle3D ? (
           <Suspense fallback={<CssFallbackBackground />}>

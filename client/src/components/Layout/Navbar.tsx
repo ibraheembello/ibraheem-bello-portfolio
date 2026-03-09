@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { navbarVariants } from '@/lib/animations/variants';
+import { useLenis } from '@/contexts/LenisProvider';
 import { HiMenuAlt3, HiX } from 'react-icons/hi';
 
 const navLinks = [
@@ -17,6 +18,7 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
+  const lenis = useLenis();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -40,12 +42,27 @@ export default function Navbar() {
   }, []);
 
   const handleNavClick = useCallback((href: string) => {
+    const isMobile = mobileOpen;
     setMobileOpen(false);
-    const el = document.querySelector(href);
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
+
+    const scrollToTarget = () => {
+      const el = document.querySelector(href);
+      if (el) {
+        if (lenis) {
+          lenis.scrollTo(el as HTMLElement, { offset: -80 });
+        } else {
+          el.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+    };
+
+    // On mobile, wait for menu animation to close before scrolling
+    if (isMobile) {
+      setTimeout(scrollToTarget, 350);
+    } else {
+      scrollToTarget();
     }
-  }, []);
+  }, [lenis, mobileOpen]);
 
   return (
     <motion.nav
