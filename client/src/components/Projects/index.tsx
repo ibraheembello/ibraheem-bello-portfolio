@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import SplitText from '@/components/ui/SplitText';
-import ClipReveal from '@/components/ui/ClipReveal';
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
 import type { Project } from '@/types';
 
@@ -36,23 +35,21 @@ function DesktopGallery({ projects }: { projects: Project[] }) {
             >
               <div className="w-full max-w-6xl grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
                 {/* Project image */}
-                <ClipReveal direction="left" delay={0.1}>
-                  <div className="relative aspect-video rounded-2xl overflow-hidden bg-gradient-to-br from-background-surface to-background-card group">
-                    <img
-                      src={project.image}
-                      alt={project.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                      loading="lazy"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
-                    {project.featured && (
-                      <div className="absolute top-4 right-4 px-4 py-1.5 rounded-full text-xs font-accent font-semibold
-                                      bg-gradient-to-r from-primary-600 to-accent-500 text-white">
-                        Featured
-                      </div>
-                    )}
-                  </div>
-                </ClipReveal>
+                <div className="relative aspect-video rounded-2xl overflow-hidden bg-gradient-to-br from-background-surface to-background-card group">
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+                  {project.featured && (
+                    <div className="absolute top-4 right-4 px-4 py-1.5 rounded-full text-xs font-accent font-semibold
+                                    bg-gradient-to-r from-primary-600 to-accent-500 text-white">
+                      Featured
+                    </div>
+                  )}
+                </div>
 
                 {/* Project info */}
                 <div className="flex flex-col justify-center">

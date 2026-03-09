@@ -32,7 +32,7 @@ export default function App() {
         {loading && <LoadingScreen key="loader" />}
       </AnimatePresence>
 
-      <div className={`min-h-screen ${loading ? 'overflow-hidden h-screen' : ''}`}>
+      <div className={`min-h-screen overflow-x-hidden ${loading ? 'overflow-hidden h-screen' : ''}`}>
         <Navbar />
         <main>
           <Hero />

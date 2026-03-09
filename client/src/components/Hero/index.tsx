@@ -125,7 +125,7 @@ export default function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.5, duration: 0.6 }}
-          className="flex items-center justify-center gap-4"
+          className="flex items-center justify-center gap-4 mb-16"
         >
           <motion.a
             href="https://github.com/ibraheembello"
@@ -155,15 +155,15 @@ export default function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 2 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
+        className="absolute bottom-4 left-1/2 -translate-x-1/2 z-10"
       >
         <motion.div
-          animate={{ y: [0, 10, 0] }}
+          animate={{ y: [0, 8, 0] }}
           transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-          className="flex flex-col items-center gap-2 text-foreground-dim"
+          className="flex flex-col items-center gap-1 text-foreground-dim"
         >
           <span className="text-xs font-body">Scroll Down</span>
-          <HiArrowDown size={18} />
+          <HiArrowDown size={16} />
         </motion.div>
       </motion.div>
     </section>
