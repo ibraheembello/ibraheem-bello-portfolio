@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
+import { AnimatePresence } from 'framer-motion';
 import { LenisProvider } from '@/contexts/LenisProvider';
 import Navbar from '@/components/Layout/Navbar';
 import Hero from '@/components/Hero';
@@ -23,13 +23,6 @@ import AmbientOrbs from '@/components/ui/AmbientOrbs';
 export default function App() {
   const [loading, setLoading] = useState(true);
 
-  const { scrollYProgress } = useScroll();
-  const backgroundColor = useTransform(
-    scrollYProgress,
-    [0, 0.15, 0.3, 0.45, 0.6, 0.75, 0.9, 1],
-    ['#0A0A1A', '#0A0A20', '#0D0A1A', '#0A1018', '#100A1A', '#0A0A1A', '#0A0A1A', '#0A0F1A']
-  );
-
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 1800);
     return () => clearTimeout(timer);
@@ -37,14 +30,14 @@ export default function App() {
 
   return (
     <LenisProvider>
+      <AmbientOrbs />
       <CustomCursor />
       <NoiseOverlay />
       <AnimatePresence mode="wait">
         {loading && <LoadingScreen key="loader" />}
       </AnimatePresence>
 
-      <motion.div style={{ backgroundColor }} className={`relative min-h-screen overflow-x-hidden ${loading ? 'overflow-hidden h-screen' : ''}`}>
-        <AmbientOrbs />
+      <div className={`relative min-h-screen overflow-x-hidden ${loading ? 'overflow-hidden h-screen' : ''}`}>
         <Navbar />
         <main className="relative z-10">
           <Hero />
@@ -72,7 +65,7 @@ export default function App() {
         </main>
         <Footer />
         <BackToTop />
-      </motion.div>
+      </div>
     </LenisProvider>
   );
 }
