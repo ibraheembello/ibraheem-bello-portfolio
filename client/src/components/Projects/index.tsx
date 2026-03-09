@@ -1,27 +1,32 @@
 import { useState, useEffect, useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import SplitText from '@/components/ui/SplitText';
+import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
+import SectionHeading from '@/components/ui/SectionHeading';
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
 import type { Project } from '@/types';
 
 function DesktopGallery({ projects }: { projects: Project[] }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const cardCount = projects.length;
-  const scrollPerCard = 70; // vh per card transition
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ['start start', 'end end'],
   });
 
-  const x = useTransform(
-    scrollYProgress,
-    [0, 1],
-    ['0%', `-${(cardCount - 1) * 100}%`]
+  // Map scroll progress to active card index
+  const activeIndex = useTransform(scrollYProgress, (v) =>
+    Math.min(Math.floor(v * cardCount), cardCount - 1)
   );
 
-  // Container height = 100vh (viewport) + (n-1) * scrollPerCard
-  const containerHeight = 100 + (cardCount - 1) * scrollPerCard;
+  const [current, setCurrent] = useState(0);
+
+  useEffect(() => {
+    const unsubscribe = activeIndex.on('change', (v) => setCurrent(v));
+    return unsubscribe;
+  }, [activeIndex]);
+
+  // Container: 100vh per project for scroll distance + 100vh for the sticky viewport
+  const containerHeight = (cardCount + 1) * 100;
 
   return (
     <div
@@ -29,49 +34,54 @@ function DesktopGallery({ projects }: { projects: Project[] }) {
       style={{ height: `${containerHeight}vh` }}
     >
       <div className="sticky top-0 h-screen flex items-center overflow-hidden">
-        <motion.div
-          style={{ x }}
-          className="flex"
-        >
-          {projects.map((project, i) => (
-            <div
-              key={project.id}
-              className="w-screen h-screen flex-shrink-0 flex items-center justify-center px-8 md:px-16 lg:px-24"
-              data-cursor-view
-            >
-              <div className="w-full max-w-6xl grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
-                {/* Project image */}
-                <div className="relative aspect-video rounded-2xl overflow-hidden bg-gradient-to-br from-background-surface to-background-card group">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
-                  {project.featured && (
-                    <div className="absolute top-4 right-4 px-4 py-1.5 rounded-full text-xs font-accent font-semibold
-                                    bg-gradient-to-r from-primary-600 to-accent-500 text-white">
-                      Featured
-                    </div>
-                  )}
+        <div className="w-full max-w-6xl mx-auto px-8 md:px-16 lg:px-24">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+            {/* Project image — transitions on scroll */}
+            <div className="relative aspect-video rounded-2xl overflow-hidden bg-gradient-to-br from-background-surface to-background-card">
+              <AnimatePresence mode="wait">
+                <motion.img
+                  key={projects[current]?.id}
+                  src={projects[current]?.image}
+                  alt={projects[current]?.title}
+                  initial={{ opacity: 0, scale: 1.05 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  transition={{ duration: 0.5, ease: 'easeInOut' }}
+                  className="w-full h-full object-cover"
+                  loading="lazy"
+                />
+              </AnimatePresence>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+              {projects[current]?.featured && (
+                <div className="absolute top-4 right-4 px-4 py-1.5 rounded-full text-xs font-accent font-semibold
+                                bg-gradient-to-r from-primary-600 to-accent-500 text-white z-10">
+                  Featured
                 </div>
+              )}
+            </div>
 
-                {/* Project info */}
-                <div className="flex flex-col justify-center">
-                  <span className="text-foreground-dim font-accent text-sm uppercase tracking-widest mb-3">
-                    {String(i + 1).padStart(2, '0')} / {String(projects.length).padStart(2, '0')}
+            {/* Project info — transitions on scroll */}
+            <div className="flex flex-col justify-center min-h-[320px]">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={projects[current]?.id}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -30 }}
+                  transition={{ duration: 0.5, ease: 'easeInOut' }}
+                >
+                  <span className="text-foreground-dim font-accent text-sm uppercase tracking-widest mb-3 block">
+                    {String(current + 1).padStart(2, '0')} / {String(cardCount).padStart(2, '0')}
                   </span>
                   <h3 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-foreground mb-4">
-                    {project.title}
+                    {projects[current]?.title}
                   </h3>
                   <p className="text-foreground-muted font-body text-lg leading-relaxed mb-6">
-                    {project.description}
+                    {projects[current]?.description}
                   </p>
 
-                  {/* Tech stack */}
                   <div className="flex flex-wrap gap-2 mb-8">
-                    {project.technologies.map((tech) => (
+                    {projects[current]?.technologies.map((tech) => (
                       <span
                         key={tech}
                         className="px-3 py-1.5 rounded-lg text-sm font-body
@@ -82,10 +92,9 @@ function DesktopGallery({ projects }: { projects: Project[] }) {
                     ))}
                   </div>
 
-                  {/* Links */}
                   <div className="flex items-center gap-6">
                     <a
-                      href={project.githubUrl}
+                      href={projects[current]?.githubUrl}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="flex items-center gap-2 text-foreground-muted hover:text-foreground font-body transition-colors"
@@ -93,9 +102,9 @@ function DesktopGallery({ projects }: { projects: Project[] }) {
                       <FaGithub size={20} />
                       View Code
                     </a>
-                    {project.liveUrl && (
+                    {projects[current]?.liveUrl && (
                       <a
-                        href={project.liveUrl}
+                        href={projects[current]?.liveUrl}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="flex items-center gap-2 text-foreground-muted hover:text-accent-400 font-body transition-colors"
@@ -105,11 +114,27 @@ function DesktopGallery({ projects }: { projects: Project[] }) {
                       </a>
                     )}
                   </div>
-                </div>
+                </motion.div>
+              </AnimatePresence>
+
+              {/* Progress dots */}
+              <div className="flex gap-2 mt-8">
+                {projects.map((_, i) => (
+                  <div
+                    key={i}
+                    className={`h-1 rounded-full transition-all duration-500 ${
+                      i === current
+                        ? 'w-8 bg-gradient-to-r from-primary-500 to-accent-500'
+                        : i < current
+                          ? 'w-4 bg-primary-500/40'
+                          : 'w-4 bg-foreground-dim/20'
+                    }`}
+                  />
+                ))}
               </div>
             </div>
-          ))}
-        </motion.div>
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -131,7 +156,6 @@ function MobileCarousel({ projects }: { projects: Project[] }) {
     const dx = e.changedTouches[0].clientX - touchRef.current.startX;
     const dy = e.changedTouches[0].clientY - touchRef.current.startY;
 
-    // Only swipe if horizontal movement is dominant
     if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 50) {
       if (dx < 0 && current < projects.length - 1) {
         setCurrent(current + 1);
@@ -217,7 +241,6 @@ function MobileCarousel({ projects }: { projects: Project[] }) {
         ))}
       </motion.div>
 
-      {/* Dots */}
       <div className="flex justify-center gap-2 mt-6">
         {projects.map((_, i) => (
           <button
@@ -238,6 +261,7 @@ function MobileCarousel({ projects }: { projects: Project[] }) {
 
 export default function Projects() {
   const [projects, setProjects] = useState<Project[]>([]);
+  const [filter, setFilter] = useState<string>('All');
 
   useEffect(() => {
     fetch('/api/projects')
@@ -250,31 +274,53 @@ export default function Projects() {
 
   if (projects.length === 0) return null;
 
+  const categories = ['All', ...new Set(projects.map((p) => p.category))];
+  const filtered = filter === 'All' ? projects : projects.filter((p) => p.category === filter);
+
   return (
     <section id="projects">
-      {/* Section header */}
+      {/* Section header + filter tabs */}
       <div className="section-padding pb-8">
-        <div className="container-max text-center">
-          <SplitText
-            text="Featured Projects"
-            as="h2"
-            className="section-title"
-            stagger={0.06}
+        <div className="container-max">
+          <SectionHeading
+            title="Featured Projects"
+            subtitle="A showcase of the applications and systems I've built."
           />
-          <p className="section-subtitle mx-auto">
-            A showcase of the applications and systems I&apos;ve built.
-          </p>
+
+          {/* Filter tabs */}
+          <div className="flex flex-wrap justify-center gap-3 mb-4">
+            {categories.map((cat) => (
+              <button
+                key={cat}
+                onClick={() => setFilter(cat)}
+                className={`relative px-5 py-2 rounded-xl font-body text-sm transition-all duration-300 ${
+                  filter === cat
+                    ? 'text-foreground'
+                    : 'text-foreground-muted hover:text-foreground glass hover:bg-glass-strong'
+                }`}
+              >
+                {filter === cat && (
+                  <motion.div
+                    layoutId="activeProjectTab"
+                    className="absolute inset-0 bg-primary-600/20 border border-primary-500/30 rounded-xl"
+                    transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+                  />
+                )}
+                <span className="relative z-10">{cat}</span>
+              </button>
+            ))}
+          </div>
         </div>
       </div>
 
-      {/* Desktop: horizontal scroll gallery */}
+      {/* Desktop: sticky scroll-driven content swap */}
       <div className="hidden lg:block">
-        <DesktopGallery projects={projects} />
+        <DesktopGallery projects={filtered} />
       </div>
 
       {/* Mobile: swipeable cards */}
       <div className="lg:hidden section-padding pt-0">
-        <MobileCarousel projects={projects} />
+        <MobileCarousel projects={filtered} />
       </div>
     </section>
   );
