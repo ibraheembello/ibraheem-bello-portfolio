@@ -34,7 +34,7 @@ const gentleSpring = {
 
 export default function AmbientOrbs() {
   return (
-    <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
+    <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
       {/* Top-left — primary purple */}
       <motion.div
         animate={{ x: 60, y: -50, scale: 1.15 }}

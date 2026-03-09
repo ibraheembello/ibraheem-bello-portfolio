@@ -37,16 +37,16 @@ export default function App() {
 
   return (
     <LenisProvider>
-      <AmbientOrbs />
       <CustomCursor />
       <NoiseOverlay />
       <AnimatePresence mode="wait">
         {loading && <LoadingScreen key="loader" />}
       </AnimatePresence>
 
-      <motion.div style={{ backgroundColor }} className={`min-h-screen overflow-x-hidden ${loading ? 'overflow-hidden h-screen' : ''}`}>
+      <motion.div style={{ backgroundColor }} className={`relative min-h-screen overflow-x-hidden ${loading ? 'overflow-hidden h-screen' : ''}`}>
+        <AmbientOrbs />
         <Navbar />
-        <main>
+        <main className="relative z-10">
           <Hero />
           <SectionConnector variant="wave" />
           <About />
