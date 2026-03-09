@@ -1,8 +1,9 @@
 import { lazy, Suspense } from 'react';
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { heroCta } from '@/lib/animations/variants';
 import { useGpuDetection } from '@/lib/animations/hooks';
 import Button from '@/components/ui/Button';
+import MagneticButton from '@/components/ui/MagneticButton';
 import TextScramble from '@/components/ui/TextScramble';
 import SplitText from '@/components/ui/SplitText';
 import { FaGithub, FaLinkedinIn } from 'react-icons/fa';
@@ -11,11 +12,16 @@ import { HiArrowDown } from 'react-icons/hi';
 const HeroScene = lazy(() => import('@/lib/three/HeroScene'));
 
 function CssFallbackBackground() {
+  const { scrollY } = useScroll();
+  const y1 = useTransform(scrollY, [0, 1000], [0, -150]);
+  const y2 = useTransform(scrollY, [0, 1000], [0, -100]);
+  const y3 = useTransform(scrollY, [0, 1000], [0, -200]);
+
   return (
     <div className="absolute inset-0 -z-10 overflow-hidden">
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary-600/20 rounded-full blur-[128px] animate-float" />
-      <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-accent-500/15 rounded-full blur-[100px] animate-float-slow animation-delay-200" />
-      <div className="absolute top-1/2 right-1/3 w-72 h-72 bg-highlight-500/10 rounded-full blur-[90px] animate-float-fast animation-delay-400" />
+      <motion.div style={{ y: y1 }} className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary-600/20 rounded-full blur-[128px] animate-float" />
+      <motion.div style={{ y: y2 }} className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-accent-500/15 rounded-full blur-[100px] animate-float-slow animation-delay-200" />
+      <motion.div style={{ y: y3 }} className="absolute top-1/2 right-1/3 w-72 h-72 bg-highlight-500/10 rounded-full blur-[90px] animate-float-fast animation-delay-400" />
     </div>
   );
 }
@@ -112,12 +118,16 @@ export default function Hero() {
           animate="visible"
           className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12"
         >
-          <Button variant="primary" onClick={handleScrollToProjects}>
-            View My Work
-          </Button>
-          <Button variant="outline" onClick={handleScrollToContact}>
-            Get In Touch
-          </Button>
+          <MagneticButton>
+            <Button variant="primary" onClick={handleScrollToProjects}>
+              View My Work
+            </Button>
+          </MagneticButton>
+          <MagneticButton>
+            <Button variant="outline" onClick={handleScrollToContact}>
+              Get In Touch
+            </Button>
+          </MagneticButton>
         </motion.div>
 
         {/* Social Links */}
@@ -127,26 +137,30 @@ export default function Hero() {
           transition={{ delay: 1.5, duration: 0.6 }}
           className="flex items-center justify-center gap-4 mb-16"
         >
-          <motion.a
-            href="https://github.com/ibraheembello"
-            target="_blank"
-            rel="noopener noreferrer"
-            whileHover={{ scale: 1.15, y: -3 }}
-            className="w-12 h-12 glass rounded-xl flex items-center justify-center text-foreground-muted
-                       hover:text-foreground hover:border-primary-500/30 hover:shadow-glow transition-all duration-300"
-          >
-            <FaGithub size={22} />
-          </motion.a>
-          <motion.a
-            href="https://linkedin.com/in/ibraheem-bello-049b34287"
-            target="_blank"
-            rel="noopener noreferrer"
-            whileHover={{ scale: 1.15, y: -3 }}
-            className="w-12 h-12 glass rounded-xl flex items-center justify-center text-foreground-muted
-                       hover:text-foreground hover:border-accent-500/30 hover:shadow-glow-accent transition-all duration-300"
-          >
-            <FaLinkedinIn size={22} />
-          </motion.a>
+          <MagneticButton strength={0.4}>
+            <motion.a
+              href="https://github.com/ibraheembello"
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.15, y: -3 }}
+              className="w-12 h-12 glass rounded-xl flex items-center justify-center text-foreground-muted
+                         hover:text-foreground hover:border-primary-500/30 hover:shadow-glow transition-all duration-300"
+            >
+              <FaGithub size={22} />
+            </motion.a>
+          </MagneticButton>
+          <MagneticButton strength={0.4}>
+            <motion.a
+              href="https://linkedin.com/in/ibraheem-bello-049b34287"
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.15, y: -3 }}
+              className="w-12 h-12 glass rounded-xl flex items-center justify-center text-foreground-muted
+                         hover:text-foreground hover:border-accent-500/30 hover:shadow-glow-accent transition-all duration-300"
+            >
+              <FaLinkedinIn size={22} />
+            </motion.a>
+          </MagneticButton>
         </motion.div>
       </div>
 
