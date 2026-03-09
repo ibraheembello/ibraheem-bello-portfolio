@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { useState, useEffect, useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { fadeUp, staggerContainer, staggerItem, slideInLeft } from '@/lib/animations/variants';
 import { useScrollReveal } from '@/lib/animations/hooks';
 import SectionHeading from '@/components/ui/SectionHeading';
@@ -61,6 +61,13 @@ function formatDate(dateStr: string): string {
 export default function Experience() {
   const [experience, setExperience] = useState<ExperienceType[]>([]);
   const { ref, controls } = useScrollReveal();
+  const sectionRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start end', 'end start'],
+  });
+  const leftY = useTransform(scrollYProgress, [0, 1], [40, -40]);
+  const rightY = useTransform(scrollYProgress, [0, 1], [20, -20]);
 
   useEffect(() => {
     fetch('/api/experience')
@@ -72,7 +79,7 @@ export default function Experience() {
   }, []);
 
   return (
-    <section id="experience" className="section-padding">
+    <section id="experience" className="section-padding" ref={sectionRef}>
       <div className="container-max">
         <SectionHeading
           title="Experience & Certifications"
@@ -81,7 +88,7 @@ export default function Experience() {
 
         <div className="grid lg:grid-cols-2 gap-12">
           {/* Experience Timeline */}
-          <div>
+          <motion.div style={{ y: leftY }}>
             <motion.h3
               ref={ref}
               initial="hidden"
@@ -152,10 +159,10 @@ export default function Experience() {
                 </motion.div>
               ))}
             </motion.div>
-          </div>
+          </motion.div>
 
           {/* Certifications */}
-          <div>
+          <motion.div style={{ y: rightY }}>
             <motion.h3
               initial="hidden"
               whileInView="visible"
@@ -178,14 +185,20 @@ export default function Experience() {
                 <motion.div key={cert.title} variants={slideInLeft}>
                   <GlassCard glow="accent" className="group">
                     <div className="flex items-start gap-4">
-                      <div className="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0 bg-background-surface">
+                      <motion.div
+                        initial={{ clipPath: 'inset(0% 0% 0% 100%)' }}
+                        whileInView={{ clipPath: 'inset(0% 0% 0% 0%)' }}
+                        viewport={{ once: true, amount: 0.1 }}
+                        transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
+                        className="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0 bg-background-surface"
+                      >
                         <img
                           src={cert.image}
                           alt={cert.title}
                           className="w-full h-full object-cover"
                           loading="lazy"
                         />
-                      </div>
+                      </motion.div>
                       <div className="flex-grow">
                         <div className="flex items-start justify-between">
                           <div>
@@ -205,7 +218,7 @@ export default function Experience() {
                 </motion.div>
               ))}
             </motion.div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

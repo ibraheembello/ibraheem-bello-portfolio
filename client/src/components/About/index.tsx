@@ -1,4 +1,5 @@
-import { motion } from 'framer-motion';
+import { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { slideInLeft, slideInRight, staggerContainer, staggerItem } from '@/lib/animations/variants';
 import { useScrollReveal } from '@/lib/animations/hooks';
 import SectionHeading from '@/components/ui/SectionHeading';
@@ -34,9 +35,16 @@ const highlights = [
 
 export default function About() {
   const { ref, controls } = useScrollReveal();
+  const sectionRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start end', 'end start'],
+  });
+  const logoY = useTransform(scrollYProgress, [0, 1], [60, -60]);
+  const bioY = useTransform(scrollYProgress, [0, 1], [30, -30]);
 
   return (
-    <section id="about" className="section-padding">
+    <section id="about" className="section-padding" ref={sectionRef}>
       <div className="container-max">
         <SectionHeading
           title="About Me"
@@ -44,12 +52,13 @@ export default function About() {
         />
 
         <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Animated IB Logo */}
+          {/* Animated IB Logo with parallax */}
           <motion.div
             ref={ref}
             initial="hidden"
             animate={controls}
             variants={slideInLeft}
+            style={{ y: logoY }}
           >
             <div className="relative w-64 h-64 md:w-80 md:h-80 mx-auto lg:mx-0">
               {/* Outer glow pulse */}
@@ -111,11 +120,12 @@ export default function About() {
             </div>
           </motion.div>
 
-          {/* Bio text */}
+          {/* Bio text with parallax */}
           <motion.div
             initial="hidden"
             animate={controls}
             variants={slideInRight}
+            style={{ y: bioY }}
           >
             <p className="text-foreground-secondary font-body text-lg leading-relaxed mb-6">
               I&apos;m <span className="text-foreground font-semibold">Ibraheem Bello</span>, a

@@ -17,6 +17,7 @@ import CustomCursor from '@/components/ui/CustomCursor';
 import Marquee from '@/components/ui/Marquee';
 import LoadingScreen from '@/components/ui/LoadingScreen';
 import NoiseOverlay from '@/components/ui/NoiseOverlay';
+import SectionConnector from '@/components/ui/SectionConnector';
 
 export default function App() {
   const [loading, setLoading] = useState(true);
@@ -45,6 +46,7 @@ export default function App() {
         <Navbar />
         <main>
           <Hero />
+          <SectionConnector variant="wave" />
           <About />
           <Stats />
           <div className="py-6 overflow-hidden border-y border-glass-border">
@@ -55,10 +57,15 @@ export default function App() {
             />
           </div>
           <Skills />
+          <SectionConnector variant="curve" />
           <Projects />
+          <SectionConnector variant="zigzag" />
           <Experience />
+          <SectionConnector variant="wave" flip />
           <Blog />
+          <SectionConnector variant="curve" flip />
           <Testimonials />
+          <SectionConnector variant="zigzag" />
           <Contact />
         </main>
         <Footer />

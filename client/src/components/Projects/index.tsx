@@ -1,10 +1,53 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { staggerContainer, staggerItem } from '@/lib/animations/variants';
 import SectionHeading from '@/components/ui/SectionHeading';
 import GlassCard from '@/components/ui/GlassCard';
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
 import type { Project } from '@/types';
+
+// Lively card entrance — each card slides from a different direction based on index
+const cardVariants = {
+  hidden: (i: number) => {
+    const directions = [
+      { x: -60, y: 40, rotate: -3 },
+      { x: 0, y: 80, rotate: 0 },
+      { x: 60, y: 40, rotate: 3 },
+      { x: -40, y: 60, rotate: -2 },
+      { x: 40, y: 60, rotate: 2 },
+      { x: 0, y: 100, rotate: 0 },
+    ];
+    const d = directions[i % directions.length];
+    return { opacity: 0, x: d.x, y: d.y, rotate: d.rotate, scale: 0.9 };
+  },
+  visible: (i: number) => ({
+    opacity: 1,
+    x: 0,
+    y: 0,
+    rotate: 0,
+    scale: 1,
+    transition: {
+      duration: 0.6,
+      delay: i * 0.12,
+      ease: [0.25, 0.46, 0.45, 0.94],
+    },
+  }),
+  exit: (i: number) => {
+    const directions = [
+      { x: -40, y: -30 },
+      { x: 0, y: -60 },
+      { x: 40, y: -30 },
+    ];
+    const d = directions[i % directions.length];
+    return {
+      opacity: 0,
+      x: d.x,
+      y: d.y,
+      scale: 0.85,
+      rotate: (i % 2 === 0 ? -2 : 2),
+      transition: { duration: 0.35, ease: 'easeIn' },
+    };
+  },
+};
 
 export default function Projects() {
   const [projects, setProjects] = useState<Project[]>([]);
@@ -58,17 +101,31 @@ export default function Projects() {
         <AnimatePresence mode="wait">
           <motion.div
             key={filter}
-            initial="hidden"
-            animate="visible"
-            exit="hidden"
-            variants={staggerContainer}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
             className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
           >
-            {filtered.map((project) => (
-              <motion.div key={project.id} variants={staggerItem}>
-                <GlassCard glow="primary" className="h-full flex flex-col group" data-cursor-view>
-                  {/* Project image with hover overlay */}
-                  <div className="relative h-48 rounded-xl overflow-hidden mb-5 bg-gradient-to-br from-background-surface to-background-card">
+            {filtered.map((project, i) => (
+              <motion.div
+                key={project.id}
+                custom={i}
+                variants={cardVariants}
+                initial="hidden"
+                animate="visible"
+                exit="exit"
+                whileHover={{ y: -10, scale: 1.02, transition: { duration: 0.3, ease: 'easeOut' } }}
+              >
+                <GlassCard glow="primary" className="h-full flex flex-col group" hover={false} data-cursor-view>
+                  {/* Project image with clip-path reveal */}
+                  <motion.div
+                    initial={{ clipPath: 'inset(100% 0% 0% 0%)' }}
+                    whileInView={{ clipPath: 'inset(0% 0% 0% 0%)' }}
+                    viewport={{ once: true, amount: 0.1 }}
+                    transition={{ duration: 0.7, delay: i * 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
+                    className="relative h-48 rounded-xl overflow-hidden mb-5 bg-gradient-to-br from-background-surface to-background-card"
+                  >
                     <img
                       src={project.image}
                       alt={project.title}
@@ -109,7 +166,7 @@ export default function Projects() {
                         Featured
                       </div>
                     )}
-                  </div>
+                  </motion.div>
 
                   {/* Title and description */}
                   <h3 className="text-xl font-heading font-semibold text-foreground mb-3 group-hover:gradient-text transition-all duration-300">

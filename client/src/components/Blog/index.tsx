@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { staggerContainer, staggerItem } from '@/lib/animations/variants';
+import { staggerContainer } from '@/lib/animations/variants';
 import SectionHeading from '@/components/ui/SectionHeading';
 import GlassCard from '@/components/ui/GlassCard';
 import { HiClock, HiExternalLink } from 'react-icons/hi';
@@ -41,8 +41,14 @@ export default function Blog() {
           variants={staggerContainer}
           className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto"
         >
-          {posts.map((post) => (
-            <motion.div key={post.id} variants={staggerItem}>
+          {posts.map((post, i) => (
+            <motion.div
+              key={post.id}
+              initial={{ opacity: 0, y: 40, rotate: i % 2 === 0 ? -1 : 1 }}
+              whileInView={{ opacity: 1, y: 0, rotate: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.5, delay: i * 0.15, ease: [0.25, 0.46, 0.45, 0.94] }}
+            >
               <a
                 href={post.url}
                 target="_blank"
@@ -50,9 +56,15 @@ export default function Blog() {
                 className="block h-full"
               >
                 <GlassCard glow="accent" className="h-full flex flex-col group">
-                  {/* Cover image */}
+                  {/* Cover image with clip reveal */}
                   {post.coverImage && (
-                    <div className="relative h-44 rounded-xl overflow-hidden mb-5 bg-gradient-to-br from-background-surface to-background-card">
+                    <motion.div
+                      initial={{ clipPath: 'inset(0% 100% 0% 0%)' }}
+                      whileInView={{ clipPath: 'inset(0% 0% 0% 0%)' }}
+                      viewport={{ once: true, amount: 0.1 }}
+                      transition={{ duration: 0.7, delay: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
+                      className="relative h-44 rounded-xl overflow-hidden mb-5 bg-gradient-to-br from-background-surface to-background-card"
+                    >
                       <img
                         src={post.coverImage}
                         alt={post.title}
@@ -60,7 +72,7 @@ export default function Blog() {
                         loading="lazy"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-                    </div>
+                    </motion.div>
                   )}
 
                   {/* No cover image fallback */}
