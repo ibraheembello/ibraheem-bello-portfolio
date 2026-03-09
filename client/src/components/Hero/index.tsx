@@ -1,9 +1,10 @@
 import { lazy, Suspense } from 'react';
 import { motion } from 'framer-motion';
-import { heroTitle, heroSubtitle, heroCta } from '@/lib/animations/variants';
+import { heroCta } from '@/lib/animations/variants';
 import { useGpuDetection } from '@/lib/animations/hooks';
 import Button from '@/components/ui/Button';
-import TypeWriter from '@/components/ui/TypeWriter';
+import TextScramble from '@/components/ui/TextScramble';
+import SplitText from '@/components/ui/SplitText';
 import { FaGithub, FaLinkedinIn } from 'react-icons/fa';
 import { HiArrowDown } from 'react-icons/hi';
 
@@ -12,7 +13,6 @@ const HeroScene = lazy(() => import('@/lib/three/HeroScene'));
 function CssFallbackBackground() {
   return (
     <div className="absolute inset-0 -z-10 overflow-hidden">
-      {/* Animated gradient orbs */}
       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary-600/20 rounded-full blur-[128px] animate-float" />
       <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-accent-500/15 rounded-full blur-[100px] animate-float-slow animation-delay-200" />
       <div className="absolute top-1/2 right-1/3 w-72 h-72 bg-highlight-500/10 rounded-full blur-[90px] animate-float-fast animation-delay-400" />
@@ -60,38 +60,45 @@ export default function Hero() {
           <span className="text-sm text-foreground-secondary font-body">Available for opportunities</span>
         </motion.div>
 
-        {/* Name */}
-        <motion.h1
-          variants={heroTitle}
-          initial="hidden"
-          animate="visible"
-          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-heading font-bold mb-6"
-        >
-          <span className="text-foreground">Hi, I&apos;m </span>
-          <span className="gradient-text">Ibraheem Bello</span>
-        </motion.h1>
+        {/* Name — Split Text Reveal */}
+        <div className="mb-6">
+          <motion.span
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="block text-2xl sm:text-3xl md:text-4xl font-body text-foreground mb-2"
+          >
+            Hi, I&apos;m
+          </motion.span>
+          <SplitText
+            text="Ibraheem Bello"
+            as="h1"
+            className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-heading font-bold gradient-text tracking-tight"
+            stagger={0.08}
+            delay={0.4}
+          />
+        </div>
 
-        {/* Typing Title */}
+        {/* Typing Title — Text Scramble */}
         <motion.div
-          variants={heroSubtitle}
-          initial="hidden"
-          animate="visible"
-          className="text-xl md:text-2xl text-foreground-secondary font-body mb-4 max-w-3xl mx-auto h-9"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1, duration: 0.5 }}
+          className="text-xl md:text-2xl lg:text-3xl font-accent mb-4 max-w-3xl mx-auto h-10"
         >
-          <TypeWriter
-            words={['Backend Developer', 'Engineering Leader', 'Open Source Contributor', 'API Architect']}
-            typingSpeed={80}
-            deletingSpeed={50}
-            pauseTime={2000}
+          <TextScramble
+            texts={['Backend Developer', 'Engineering Leader', 'Open Source Contributor', 'API Architect']}
             className="gradient-text font-semibold"
+            scrambleSpeed={30}
+            pauseTime={2500}
           />
         </motion.div>
 
         {/* Description */}
         <motion.p
-          variants={heroSubtitle}
-          initial="hidden"
-          animate="visible"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.2, duration: 0.6 }}
           className="text-base md:text-lg text-foreground-muted font-body mb-10 max-w-2xl mx-auto"
         >
           I build scalable RESTful APIs and microservices with Node.js, TypeScript,
@@ -117,7 +124,7 @@ export default function Hero() {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 1.2, duration: 0.6 }}
+          transition={{ delay: 1.5, duration: 0.6 }}
           className="flex items-center justify-center gap-4"
         >
           <motion.a
@@ -147,7 +154,7 @@ export default function Hero() {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1.5 }}
+        transition={{ delay: 2 }}
         className="absolute bottom-8 left-1/2 -translate-x-1/2"
       >
         <motion.div

@@ -1,8 +1,7 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { navbarVariants } from '@/lib/animations/variants';
 import { HiMenuAlt3, HiX } from 'react-icons/hi';
-import ThemeToggle from '@/components/ui/ThemeToggle';
 
 const navLinks = [
   { label: 'Home', href: '#home' },
@@ -40,11 +39,13 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const handleNavClick = (href: string) => {
+  const handleNavClick = useCallback((href: string) => {
     setMobileOpen(false);
     const el = document.querySelector(href);
-    el?.scrollIntoView({ behavior: 'smooth' });
-  };
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, []);
 
   return (
     <motion.nav
@@ -92,9 +93,8 @@ export default function Navbar() {
           ))}
         </div>
 
-        {/* Theme Toggle + Resume Button (Desktop) */}
+        {/* Resume Button (Desktop) */}
         <div className="hidden md:flex items-center gap-3">
-          <ThemeToggle />
           <motion.a
             href="/api/resume/download"
             whileHover={{ scale: 1.05 }}
@@ -141,7 +141,6 @@ export default function Navbar() {
                 </button>
               ))}
               <div className="flex items-center gap-3 mt-2">
-                <ThemeToggle />
                 <a
                   href="/api/resume/download"
                   className="btn-primary text-sm py-2 px-5 text-center flex-1"

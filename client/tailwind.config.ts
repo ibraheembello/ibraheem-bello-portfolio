@@ -3,7 +3,6 @@ import plugin from 'tailwindcss/plugin';
 
 const config: Config = {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
-  darkMode: 'class',
   theme: {
     extend: {
       colors: {
@@ -65,8 +64,9 @@ const config: Config = {
         },
       },
       fontFamily: {
-        heading: ['Space Grotesk', 'sans-serif'],
-        body: ['Inter', 'sans-serif'],
+        heading: ['Clash Display', 'sans-serif'],
+        accent: ['Syne', 'sans-serif'],
+        body: ['Satoshi', 'sans-serif'],
       },
       animation: {
         float: 'float 6s ease-in-out infinite',

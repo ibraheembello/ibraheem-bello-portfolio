@@ -3,32 +3,8 @@
 @tailwind utilities;
 
 @layer base {
-  /* Light theme (base) */
+  /* Dark theme — permanent (per-section colors override via scroll) */
   :root {
-    --bg-page: #e8eaf4;
-    --bg-card: #f4f5fb;
-    --bg-surface: #dde0ee;
-    --bg-elevated: #f8f9fc;
-    --bg-hover: #d4d7e8;
-    --fg-primary: #1a1a2e;
-    --fg-secondary: #3a3a5c;
-    --fg-muted: #5a5a7a;
-    --fg-dim: #8888a4;
-    --glass-bg: rgba(255, 255, 255, 0.55);
-    --glass-bg-medium: rgba(255, 255, 255, 0.6);
-    --glass-bg-strong: rgba(255, 255, 255, 0.7);
-    --glass-border: rgba(100, 80, 160, 0.15);
-    --glass-border-strong: rgba(100, 80, 160, 0.2);
-    --glass-shadow: rgba(80, 60, 140, 0.1);
-    --scrollbar-track: #e0e2ee;
-    --scrollbar-thumb: rgba(124, 58, 237, 0.35);
-    --gradient-orb-1: rgba(124, 58, 237, 0.08);
-    --gradient-orb-2: rgba(6, 182, 212, 0.06);
-    --gradient-orb-3: rgba(236, 72, 153, 0.05);
-  }
-
-  /* Dark theme */
-  .dark {
     --bg-page: #0A0A1A;
     --bg-card: #0F0F2D;
     --bg-surface: #1A1A3E;
@@ -52,7 +28,7 @@
   }
 
   html {
-    scroll-behavior: smooth;
+    /* Lenis handles smooth scrolling */
   }
 
   body {
@@ -120,7 +96,7 @@
   }
 
   .section-title {
-    @apply text-3xl md:text-4xl lg:text-5xl font-heading font-bold gradient-text mb-4;
+    @apply text-4xl md:text-5xl lg:text-6xl font-heading font-bold gradient-text mb-4;
   }
 
   .section-subtitle {
