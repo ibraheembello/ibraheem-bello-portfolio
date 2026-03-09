@@ -118,22 +118,14 @@ export default function Projects() {
                 whileHover={{ y: -10, scale: 1.02, transition: { duration: 0.3, ease: 'easeOut' } }}
               >
                 <GlassCard glow="primary" className="h-full flex flex-col group" hover={false} data-cursor-view>
-                  {/* Project image with clip-path reveal */}
+                  {/* Project image */}
                   <div className="relative h-48 rounded-xl overflow-hidden mb-5 bg-gradient-to-br from-background-surface to-background-card">
-                    <motion.div
-                      initial={{ clipPath: 'inset(100% 0% 0% 0%)' }}
-                      whileInView={{ clipPath: 'inset(0% 0% 0% 0%)' }}
-                      viewport={{ once: true, amount: 0.1 }}
-                      transition={{ duration: 0.7, delay: i * 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
-                      className="absolute inset-0"
-                    >
-                      <img
-                        src={project.image}
-                        alt={project.title}
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                        loading="lazy"
-                      />
-                    </motion.div>
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                      loading="lazy"
+                    />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
 
                     {/* Hover overlay */}

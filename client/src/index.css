@@ -33,13 +33,7 @@
 
   body {
     background: var(--bg-page);
-    background-image:
-      radial-gradient(ellipse at 20% 50%, var(--gradient-orb-1) 0%, transparent 50%),
-      radial-gradient(ellipse at 80% 20%, var(--gradient-orb-2) 0%, transparent 50%),
-      radial-gradient(ellipse at 50% 80%, var(--gradient-orb-3) 0%, transparent 50%);
-    background-attachment: fixed;
     color: var(--fg-primary);
-    transition: background-color 0.3s ease, color 0.3s ease;
   }
 
   ::selection {

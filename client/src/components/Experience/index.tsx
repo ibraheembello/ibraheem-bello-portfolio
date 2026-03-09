@@ -185,21 +185,13 @@ export default function Experience() {
                 <motion.div key={cert.title} variants={slideInLeft}>
                   <GlassCard glow="accent" className="group">
                     <div className="flex items-start gap-4">
-                      <div className="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0 bg-background-surface relative">
-                        <motion.div
-                          initial={{ clipPath: 'inset(0% 0% 0% 100%)' }}
-                          whileInView={{ clipPath: 'inset(0% 0% 0% 0%)' }}
-                          viewport={{ once: true, amount: 0.1 }}
-                          transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
-                          className="absolute inset-0"
-                        >
-                          <img
-                            src={cert.image}
-                            alt={cert.title}
-                            className="w-full h-full object-cover"
-                            loading="lazy"
-                          />
-                        </motion.div>
+                      <div className="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0 bg-background-surface">
+                        <img
+                          src={cert.image}
+                          alt={cert.title}
+                          className="w-full h-full object-cover"
+                          loading="lazy"
+                        />
                       </div>
                       <div className="flex-grow">
                         <div className="flex items-start justify-between">
