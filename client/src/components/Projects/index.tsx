@@ -20,7 +20,7 @@ function DesktopGallery({ projects }: { projects: Project[] }) {
   return (
     <div
       ref={containerRef}
-      style={{ height: `${projects.length * 100}vh` }}
+      style={{ height: `${(projects.length + 1) * 50}vh` }}
     >
       <div className="sticky top-0 h-screen flex items-center overflow-hidden">
         <motion.div

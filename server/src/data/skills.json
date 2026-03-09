@@ -2,9 +2,7 @@
   "languages": [
     { "name": "JavaScript", "level": "Advanced", "icon": "javascript" },
     { "name": "TypeScript", "level": "Advanced", "icon": "typescript" },
-    { "name": "HTML", "level": "Advanced", "icon": "html" },
-    { "name": "CSS", "level": "Advanced", "icon": "css" },
-    { "name": "EJS", "level": "Intermediate", "icon": "ejs" }
+    { "name": "SQL", "level": "Advanced", "icon": "sql" }
   ],
   "backend": [
     { "name": "Node.js", "level": "Advanced", "icon": "nodejs" },
@@ -21,17 +19,22 @@
     { "name": "MongoDB", "level": "Advanced", "icon": "mongodb" },
     { "name": "Prisma", "level": "Intermediate", "icon": "prisma" },
     { "name": "TypeORM", "level": "Intermediate", "icon": "typeorm" },
-    { "name": "Mongoose", "level": "Advanced", "icon": "mongoose" }
+    { "name": "Mongoose", "level": "Advanced", "icon": "mongoose" },
+    { "name": "Redis", "level": "Beginner", "icon": "redis" }
   ],
   "tools": [
     { "name": "Git & GitHub", "level": "Advanced", "icon": "git" },
-    { "name": "AWS EC2", "level": "Intermediate", "icon": "aws" },
+    { "name": "Docker", "level": "Intermediate", "icon": "docker" },
+    { "name": "AWS", "level": "Intermediate", "icon": "aws" },
     { "name": "Azure", "level": "Intermediate", "icon": "azure" },
     { "name": "PM2", "level": "Intermediate", "icon": "pm2" },
     { "name": "Nginx", "level": "Intermediate", "icon": "nginx" },
     { "name": "Postman", "level": "Advanced", "icon": "postman" },
     { "name": "CI/CD (GitHub Actions)", "level": "Intermediate", "icon": "cicd" },
     { "name": "Swagger/OpenAPI", "level": "Intermediate", "icon": "swagger" },
-    { "name": "React", "level": "Intermediate", "icon": "react" }
+    { "name": "React", "level": "Intermediate", "icon": "react" },
+    { "name": "Tailwind CSS", "level": "Intermediate", "icon": "tailwind" },
+    { "name": "Jest", "level": "Advanced", "icon": "jest" },
+    { "name": "Linux/Bash", "level": "Intermediate", "icon": "linux" }
   ]
 }

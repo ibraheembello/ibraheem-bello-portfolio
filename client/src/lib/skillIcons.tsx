@@ -1,8 +1,6 @@
 import {
   SiJavascript,
   SiTypescript,
-  SiHtml5,
-  SiCss3,
   SiNodedotjs,
   SiExpress,
   SiNestjs,
@@ -16,9 +14,13 @@ import {
   SiReact,
   SiGithubactions,
   SiJsonwebtokens,
+  SiDocker,
+  SiTailwindcss,
+  SiJest,
+  SiRedis,
+  SiLinux,
 } from 'react-icons/si';
 import {
-  HiCode,
   HiGlobeAlt,
   HiCube,
   HiCreditCard,
@@ -32,9 +34,7 @@ import { FaAws } from 'react-icons/fa';
 const iconMap: Record<string, React.ComponentType<{ size?: number; className?: string; style?: React.CSSProperties }>> = {
   javascript: SiJavascript,
   typescript: SiTypescript,
-  html: SiHtml5,
-  css: SiCss3,
-  ejs: HiCode,
+  sql: HiDatabase,
   nodejs: SiNodedotjs,
   express: SiExpress,
   nestjs: SiNestjs,
@@ -57,13 +57,17 @@ const iconMap: Record<string, React.ComponentType<{ size?: number; className?: s
   cicd: SiGithubactions,
   swagger: SiSwagger,
   react: SiReact,
+  docker: SiDocker,
+  tailwind: SiTailwindcss,
+  jest: SiJest,
+  redis: SiRedis,
+  linux: SiLinux,
 };
 
 const iconColors: Record<string, string> = {
   javascript: '#F7DF1E',
   typescript: '#3178C6',
-  html: '#E34F26',
-  css: '#1572B6',
+  sql: '#336791',
   nodejs: '#339933',
   express: '#FFFFFF',
   nestjs: '#E0234E',
@@ -78,6 +82,11 @@ const iconColors: Record<string, string> = {
   react: '#61DAFB',
   cicd: '#2088FF',
   jwt: '#FB015B',
+  docker: '#2496ED',
+  tailwind: '#06B6D4',
+  jest: '#C21325',
+  redis: '#DC382D',
+  linux: '#FCC624',
 };
 
 export function getSkillIcon(iconKey: string): React.ComponentType<{ size?: number; className?: string; style?: React.CSSProperties }> | null {

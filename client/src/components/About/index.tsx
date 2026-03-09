@@ -1,9 +1,8 @@
 import { motion } from 'framer-motion';
-import { slideInLeft, staggerContainer, staggerItem } from '@/lib/animations/variants';
+import { slideInLeft, slideInRight, staggerContainer, staggerItem } from '@/lib/animations/variants';
 import { useScrollReveal } from '@/lib/animations/hooks';
 import SectionHeading from '@/components/ui/SectionHeading';
 import GlassCard from '@/components/ui/GlassCard';
-import ClipReveal from '@/components/ui/ClipReveal';
 import { HiCode, HiLightningBolt, HiUserGroup, HiAcademicCap } from 'react-icons/hi';
 
 const highlights = [
@@ -112,8 +111,12 @@ export default function About() {
             </div>
           </motion.div>
 
-          {/* Bio text — clip-path reveal */}
-          <ClipReveal direction="right" delay={0.2}>
+          {/* Bio text */}
+          <motion.div
+            initial="hidden"
+            animate={controls}
+            variants={slideInRight}
+          >
             <p className="text-foreground-secondary font-body text-lg leading-relaxed mb-6">
               I&apos;m <span className="text-foreground font-semibold">Ibraheem Bello</span>, a
               backend engineer based in <span className="text-accent-400">Lagos, Nigeria</span>.
@@ -133,7 +136,7 @@ export default function About() {
               that lift each other up. Every API endpoint I build, every system I architect — it&apos;s
               about creating lasting value, not just shipping code.
             </p>
-          </ClipReveal>
+          </motion.div>
         </div>
 
         {/* Highlight cards */}

@@ -48,7 +48,7 @@ export default function Hero() {
       )}
 
       {/* Content */}
-      <div className="relative z-10 container-max px-4 sm:px-6 lg:px-8 text-center">
+      <div className="relative z-10 container-max px-4 sm:px-6 lg:px-8 text-center pt-20">
         {/* Greeting */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
