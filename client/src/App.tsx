@@ -42,7 +42,7 @@ export default function App() {
 
       <div className={`relative min-h-screen overflow-x-hidden ${loading ? 'overflow-hidden h-screen' : ''}`}>
         <Navbar />
-        <main className="relative z-10">
+        <main id="main-content" className="relative z-10">
           <Hero />
           <SectionConnector variant="wave" />
           <SectionReveal><About /></SectionReveal>

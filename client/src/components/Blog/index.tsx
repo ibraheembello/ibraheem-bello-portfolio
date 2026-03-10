@@ -4,6 +4,7 @@ import { staggerContainer } from '@/lib/animations/variants';
 import SectionHeading from '@/components/ui/SectionHeading';
 import GlassCard from '@/components/ui/GlassCard';
 import TiltCard from '@/components/ui/TiltCard';
+import LazyImage from '@/components/ui/LazyImage';
 import { HiClock, HiExternalLink } from 'react-icons/hi';
 import { FaDev } from 'react-icons/fa';
 import type { BlogPost } from '@/types';
@@ -61,11 +62,10 @@ export default function Blog() {
                   {/* Cover image */}
                   {post.coverImage && (
                     <div className="relative h-44 rounded-xl overflow-hidden mb-5 bg-gradient-to-br from-background-surface to-background-card">
-                      <img
+                      <LazyImage
                         src={post.coverImage}
                         alt={post.title}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                        loading="lazy"
+                        className="w-full h-full group-hover:scale-105 transition-transform duration-500"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
                     </div>

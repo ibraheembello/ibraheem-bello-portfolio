@@ -4,6 +4,7 @@ import SectionHeading from '@/components/ui/SectionHeading';
 import ParallaxBg from '@/components/ui/ParallaxBg';
 import GlassCard from '@/components/ui/GlassCard';
 import TiltCard from '@/components/ui/TiltCard';
+import LazyImage from '@/components/ui/LazyImage';
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
 import type { Project } from '@/types';
 
@@ -124,11 +125,10 @@ export default function Projects() {
                 <GlassCard glow="primary" className="h-full flex flex-col" hover={false} data-cursor-view>
                   {/* Project image */}
                   <div className="relative h-48 rounded-xl overflow-hidden mb-5 bg-gradient-to-br from-background-surface to-background-card">
-                    <img
+                    <LazyImage
                       src={project.image}
                       alt={project.title}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                      loading="lazy"
+                      className="w-full h-full group-hover:scale-110 transition-transform duration-700"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
 
