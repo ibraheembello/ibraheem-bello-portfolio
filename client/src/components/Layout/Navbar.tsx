@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { navbarVariants } from '@/lib/animations/variants';
 import { useLenis } from '@/contexts/LenisProvider';
-import { HiMenuAlt3, HiX } from 'react-icons/hi';
+import { HiMenuAlt3, HiX, HiSearch } from 'react-icons/hi';
 
 const navLinks = [
   { label: 'Home', href: '#home' },
@@ -110,8 +110,15 @@ export default function Navbar() {
           ))}
         </div>
 
-        {/* Resume Button (Desktop) */}
+        {/* Resume + Search (Desktop) */}
         <div className="hidden md:flex items-center gap-3">
+          <button
+            onClick={() => window.dispatchEvent(new KeyboardEvent('keydown', { key: 'k', ctrlKey: true }))}
+            className="flex items-center gap-2 px-3 py-1.5 rounded-lg glass text-foreground-dim hover:text-foreground text-xs font-body transition-colors border border-glass-border"
+          >
+            <HiSearch size={14} />
+            <kbd className="font-mono text-[10px]">Ctrl+K</kbd>
+          </button>
           <motion.a
             href="/api/resume/download"
             whileHover={{ scale: 1.05 }}

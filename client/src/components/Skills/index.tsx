@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { staggerContainer, staggerItem, fadeUp } from '@/lib/animations/variants';
+import { fadeUp } from '@/lib/animations/variants';
 import SectionHeading from '@/components/ui/SectionHeading';
 import SkillBadge from '@/components/ui/SkillBadge';
 import type { SkillsData } from '@/types';
@@ -71,14 +71,23 @@ export default function Skills() {
         <AnimatePresence mode="wait">
           <motion.div
             key={activeCategory}
-            initial="hidden"
-            animate="visible"
-            exit="hidden"
-            variants={staggerContainer}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
             className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 max-w-4xl mx-auto"
           >
-            {skills[activeCategory as keyof SkillsData].map((skill) => (
-              <motion.div key={skill.name} variants={staggerItem}>
+            {skills[activeCategory as keyof SkillsData].map((skill, i) => (
+              <motion.div
+                key={skill.name}
+                initial={{ opacity: 0, y: 24, scale: 0.85 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{
+                  duration: 0.4,
+                  delay: i * 0.06,
+                  ease: [0.25, 0.46, 0.45, 0.94],
+                }}
+              >
                 <SkillBadge name={skill.name} level={skill.level} icon={skill.icon} />
               </motion.div>
             ))}

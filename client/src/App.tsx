@@ -18,7 +18,9 @@ import Marquee from '@/components/ui/Marquee';
 import LoadingScreen from '@/components/ui/LoadingScreen';
 import NoiseOverlay from '@/components/ui/NoiseOverlay';
 import ScrollProgress from '@/components/ui/ScrollProgress';
+import CommandPalette from '@/components/ui/CommandPalette';
 import SectionConnector from '@/components/ui/SectionConnector';
+import SectionReveal from '@/components/ui/SectionReveal';
 
 export default function App() {
   const [loading, setLoading] = useState(true);
@@ -33,6 +35,7 @@ export default function App() {
       <CustomCursor />
       <NoiseOverlay />
       <ScrollProgress />
+      <CommandPalette />
       <AnimatePresence mode="wait">
         {loading && <LoadingScreen key="loader" />}
       </AnimatePresence>
@@ -42,8 +45,8 @@ export default function App() {
         <main className="relative z-10">
           <Hero />
           <SectionConnector variant="wave" />
-          <About />
-          <Stats />
+          <SectionReveal><About /></SectionReveal>
+          <SectionReveal><Stats /></SectionReveal>
           <div className="py-6 overflow-hidden border-y border-glass-border">
             <Marquee
               text="Node.js  •  TypeScript  •  NestJS  •  Express  •  MongoDB  •  PostgreSQL  •  REST APIs  •  Microservices  •  Cloud Infrastructure  •  Open Source"
@@ -51,17 +54,17 @@ export default function App() {
               speed={25}
             />
           </div>
-          <Skills />
+          <SectionReveal><Skills /></SectionReveal>
           <SectionConnector variant="curve" />
-          <Projects />
+          <SectionReveal><Projects /></SectionReveal>
           <SectionConnector variant="zigzag" />
-          <Experience />
+          <SectionReveal><Experience /></SectionReveal>
           <SectionConnector variant="wave" flip />
-          <Blog />
+          <SectionReveal><Blog /></SectionReveal>
           <SectionConnector variant="curve" flip />
-          <Testimonials />
+          <SectionReveal><Testimonials /></SectionReveal>
           <SectionConnector variant="zigzag" />
-          <Contact />
+          <SectionReveal><Contact /></SectionReveal>
         </main>
         <Footer />
         <BackToTop />
