@@ -17,6 +17,7 @@ import CustomCursor from '@/components/ui/CustomCursor';
 import Marquee from '@/components/ui/Marquee';
 import LoadingScreen from '@/components/ui/LoadingScreen';
 import NoiseOverlay from '@/components/ui/NoiseOverlay';
+import ScrollProgress from '@/components/ui/ScrollProgress';
 import SectionConnector from '@/components/ui/SectionConnector';
 
 export default function App() {
@@ -31,6 +32,7 @@ export default function App() {
     <LenisProvider>
       <CustomCursor />
       <NoiseOverlay />
+      <ScrollProgress />
       <AnimatePresence mode="wait">
         {loading && <LoadingScreen key="loader" />}
       </AnimatePresence>

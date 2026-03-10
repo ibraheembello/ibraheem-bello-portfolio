@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import SectionHeading from '@/components/ui/SectionHeading';
 import ParallaxBg from '@/components/ui/ParallaxBg';
 import GlassCard from '@/components/ui/GlassCard';
+import TiltCard from '@/components/ui/TiltCard';
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
 import type { Project } from '@/types';
 
@@ -117,9 +118,10 @@ export default function Projects() {
                 initial="hidden"
                 animate="visible"
                 exit="exit"
-                whileHover={{ y: -10, scale: 1.02, transition: { duration: 0.3, ease: 'easeOut' } }}
+                whileHover={{ y: -10, transition: { duration: 0.3, ease: 'easeOut' } }}
               >
-                <GlassCard glow="primary" className="h-full flex flex-col group" hover={false} data-cursor-view>
+                <TiltCard className="h-full relative group">
+                <GlassCard glow="primary" className="h-full flex flex-col" hover={false} data-cursor-view>
                   {/* Project image */}
                   <div className="relative h-48 rounded-xl overflow-hidden mb-5 bg-gradient-to-br from-background-surface to-background-card">
                     <img
@@ -211,6 +213,7 @@ export default function Projects() {
                     )}
                   </div>
                 </GlassCard>
+                </TiltCard>
               </motion.div>
             ))}
           </motion.div>

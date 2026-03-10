@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { staggerContainer } from '@/lib/animations/variants';
 import SectionHeading from '@/components/ui/SectionHeading';
 import GlassCard from '@/components/ui/GlassCard';
+import TiltCard from '@/components/ui/TiltCard';
 import { HiClock, HiExternalLink } from 'react-icons/hi';
 import { FaDev } from 'react-icons/fa';
 import type { BlogPost } from '@/types';
@@ -55,7 +56,8 @@ export default function Blog() {
                 rel="noopener noreferrer"
                 className="block h-full"
               >
-                <GlassCard glow="accent" className="h-full flex flex-col group">
+                <TiltCard className="h-full relative group" tiltMax={6}>
+                <GlassCard glow="accent" className="h-full flex flex-col">
                   {/* Cover image */}
                   {post.coverImage && (
                     <div className="relative h-44 rounded-xl overflow-hidden mb-5 bg-gradient-to-br from-background-surface to-background-card">
@@ -114,6 +116,7 @@ export default function Blog() {
                     Read on {post.platform}
                   </div>
                 </GlassCard>
+                </TiltCard>
               </a>
             </motion.div>
           ))}
