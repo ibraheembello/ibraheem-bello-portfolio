@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import { fadeUp, staggerContainer, staggerItem, slideInLeft } from '@/lib/animations/variants';
 import { useScrollReveal } from '@/lib/animations/hooks';
 import ParallaxBg from '@/components/ui/ParallaxBg';
@@ -59,6 +59,28 @@ function formatDate(dateStr: string): string {
   return `${months[parseInt(month) - 1]} ${year}`;
 }
 
+function TimelineAnimated({ children }: { children: React.ReactNode }) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ['start 80%', 'end 60%'],
+  });
+  const scaleY = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
+
+  return (
+    <div ref={containerRef} className="relative">
+      {/* Animated timeline line */}
+      <motion.div
+        style={{ scaleY, transformOrigin: 'top' }}
+        className="absolute left-[15px] top-0 bottom-0 w-px bg-gradient-to-b from-primary-500 via-accent-500 to-highlight-500"
+      />
+      {/* Static faint track behind */}
+      <div className="absolute left-[15px] top-0 bottom-0 w-px bg-glass-border" />
+      {children}
+    </div>
+  );
+}
+
 export default function Experience() {
   const [experience, setExperience] = useState<ExperienceType[]>([]);
   const { ref, controls } = useScrollReveal();
@@ -102,6 +124,7 @@ export default function Experience() {
               Work Experience
             </motion.h3>
 
+            <TimelineAnimated>
             <motion.div
               initial="hidden"
               whileInView="visible"
@@ -109,8 +132,6 @@ export default function Experience() {
               variants={staggerContainer}
               className="relative"
             >
-              {/* Timeline line */}
-              <div className="absolute left-[15px] top-0 bottom-0 w-px bg-gradient-to-b from-primary-500 via-accent-500 to-transparent" />
 
               {experience.map((exp) => (
                 <motion.div key={exp.id} variants={staggerItem} className="relative pl-10 pb-10 last:pb-0">
@@ -161,6 +182,7 @@ export default function Experience() {
                 </motion.div>
               ))}
             </motion.div>
+            </TimelineAnimated>
           </motion.div>
 
           {/* Certifications */}

@@ -1,4 +1,4 @@
-import { useState, type FormEvent } from 'react';
+import { useState, useId, type FormEvent } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { slideInLeft, slideInRight } from '@/lib/animations/variants';
 import { useScrollReveal } from '@/lib/animations/hooks';
@@ -8,6 +8,68 @@ import Button from '@/components/ui/Button';
 import { HiMail, HiLocationMarker, HiPhone } from 'react-icons/hi';
 import { FaGithub, FaLinkedinIn, FaTwitter } from 'react-icons/fa';
 import ParallaxBg from '@/components/ui/ParallaxBg';
+
+function FloatingInput({ label, value, onChange, type = 'text', ...props }: {
+  label: string; value: string; onChange: (v: string) => void; type?: string;
+  required?: boolean; minLength?: number; maxLength?: number;
+}) {
+  const id = useId();
+  const hasValue = value.length > 0;
+  return (
+    <div className="relative">
+      <input
+        id={id}
+        type={type}
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        placeholder=" "
+        className="peer w-full px-4 pt-5 pb-2 rounded-xl bg-glass-light border border-glass-border
+                   text-foreground font-body focus:outline-none focus:border-primary-500/50
+                   focus:shadow-glow transition-all duration-300"
+        {...props}
+      />
+      <label
+        htmlFor={id}
+        className={`absolute left-4 transition-all duration-200 font-body pointer-events-none
+          ${hasValue ? 'top-1.5 text-[10px] text-primary-400' : 'top-3.5 text-sm text-foreground-dim'}
+          peer-focus:top-1.5 peer-focus:text-[10px] peer-focus:text-primary-400`}
+      >
+        {label}
+      </label>
+    </div>
+  );
+}
+
+function FloatingTextarea({ label, value, onChange, rows = 6, ...props }: {
+  label: string; value: string; onChange: (v: string) => void; rows?: number;
+  required?: boolean; minLength?: number; maxLength?: number;
+}) {
+  const id = useId();
+  const hasValue = value.length > 0;
+  return (
+    <div className="relative">
+      <textarea
+        id={id}
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        placeholder=" "
+        rows={rows}
+        className="peer w-full px-4 pt-5 pb-2 rounded-xl bg-glass-light border border-glass-border
+                   text-foreground font-body focus:outline-none focus:border-primary-500/50
+                   focus:shadow-glow transition-all duration-300 resize-none"
+        {...props}
+      />
+      <label
+        htmlFor={id}
+        className={`absolute left-4 transition-all duration-200 font-body pointer-events-none
+          ${hasValue ? 'top-1.5 text-[10px] text-primary-400' : 'top-3.5 text-sm text-foreground-dim'}
+          peer-focus:top-1.5 peer-focus:text-[10px] peer-focus:text-primary-400`}
+      >
+        {label}
+      </label>
+    </div>
+  );
+}
 
 interface FormState {
   name: string;
@@ -142,60 +204,33 @@ export default function Contact() {
             <GlassCard hover={false}>
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid sm:grid-cols-2 gap-6">
-                  <div>
-                    <label htmlFor="name" className="block text-sm text-foreground-secondary font-body mb-2">
-                      Your Name
-                    </label>
-                    <input
-                      type="text"
-                      id="name"
-                      value={form.name}
-                      onChange={(e) => setForm({ ...form, name: e.target.value })}
-                      required
-                      minLength={2}
-                      maxLength={100}
-                      className="w-full px-4 py-3 rounded-xl bg-glass-light border border-glass-border
-                                 text-foreground font-body placeholder-foreground-dim focus:outline-none
-                                 focus:border-primary-500/50 focus:shadow-glow transition-all duration-300"
-                      placeholder="John Doe"
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="email" className="block text-sm text-foreground-secondary font-body mb-2">
-                      Your Email
-                    </label>
-                    <input
-                      type="email"
-                      id="email"
-                      value={form.email}
-                      onChange={(e) => setForm({ ...form, email: e.target.value })}
-                      required
-                      className="w-full px-4 py-3 rounded-xl bg-glass-light border border-glass-border
-                                 text-foreground font-body placeholder-foreground-dim focus:outline-none
-                                 focus:border-primary-500/50 focus:shadow-glow transition-all duration-300"
-                      placeholder="john@example.com"
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label htmlFor="message" className="block text-sm text-foreground-secondary font-body mb-2">
-                    Your Message
-                  </label>
-                  <textarea
-                    id="message"
-                    value={form.message}
-                    onChange={(e) => setForm({ ...form, message: e.target.value })}
+                  <FloatingInput
+                    label="Your Name"
+                    type="text"
+                    value={form.name}
+                    onChange={(v) => setForm({ ...form, name: v })}
                     required
-                    minLength={10}
-                    maxLength={1000}
-                    rows={6}
-                    className="w-full px-4 py-3 rounded-xl bg-glass-light border border-glass-border
-                               text-foreground font-body placeholder-foreground-dim focus:outline-none
-                               focus:border-primary-500/50 focus:shadow-glow transition-all duration-300 resize-none"
-                    placeholder="Tell me about your project or just say hello..."
+                    minLength={2}
+                    maxLength={100}
+                  />
+                  <FloatingInput
+                    label="Your Email"
+                    type="email"
+                    value={form.email}
+                    onChange={(v) => setForm({ ...form, email: v })}
+                    required
                   />
                 </div>
+
+                <FloatingTextarea
+                  label="Your Message"
+                  value={form.message}
+                  onChange={(v) => setForm({ ...form, message: v })}
+                  required
+                  minLength={10}
+                  maxLength={1000}
+                  rows={6}
+                />
 
                 <div className="flex items-center justify-between">
                   <Button

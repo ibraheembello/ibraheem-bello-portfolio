@@ -1,8 +1,8 @@
-import { motion } from 'framer-motion';
-import { staggerContainer, staggerItem } from '@/lib/animations/variants';
+import { useState, useEffect, useCallback } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import SectionHeading from '@/components/ui/SectionHeading';
 import GlassCard from '@/components/ui/GlassCard';
-import { HiStar } from 'react-icons/hi';
+import { HiStar, HiChevronLeft, HiChevronRight } from 'react-icons/hi';
 import { FaQuoteLeft } from 'react-icons/fa';
 
 interface Testimonial {
@@ -44,7 +44,33 @@ const testimonials: Testimonial[] = [
   },
 ];
 
+const slideVariants = {
+  enter: (dir: number) => ({ x: dir > 0 ? 200 : -200, opacity: 0, scale: 0.95 }),
+  center: { x: 0, opacity: 1, scale: 1 },
+  exit: (dir: number) => ({ x: dir > 0 ? -200 : 200, opacity: 0, scale: 0.95 }),
+};
+
 export default function Testimonials() {
+  const [[active, direction], setActive] = useState([0, 0]);
+  const [paused, setPaused] = useState(false);
+
+  const next = useCallback(() => {
+    setActive(([prev]) => [(prev + 1) % testimonials.length, 1]);
+  }, []);
+
+  const prev = useCallback(() => {
+    setActive(([prev]) => [(prev - 1 + testimonials.length) % testimonials.length, -1]);
+  }, []);
+
+  // Auto-rotate every 5s
+  useEffect(() => {
+    if (paused) return;
+    const timer = setInterval(next, 5000);
+    return () => clearInterval(timer);
+  }, [next, paused]);
+
+  const t = testimonials[active];
+
   return (
     <section id="testimonials" className="section-padding glow-testimonials">
       <div className="container-max">
@@ -53,51 +79,82 @@ export default function Testimonials() {
           subtitle="Feedback from peers, collaborators, and fellow engineers."
         />
 
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
-          variants={staggerContainer}
-          className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto"
+        <div
+          className="max-w-3xl mx-auto relative"
+          onMouseEnter={() => setPaused(true)}
+          onMouseLeave={() => setPaused(false)}
         >
-          {testimonials.map((testimonial) => (
-            <motion.div key={testimonial.id} variants={staggerItem}>
-              <GlassCard glow="highlight" className="h-full flex flex-col">
-                {/* Quote icon */}
-                <FaQuoteLeft size={24} className="text-primary-500/30 mb-4" />
+          {/* Carousel */}
+          <div className="overflow-hidden relative min-h-[280px] sm:min-h-[240px]">
+            <AnimatePresence custom={direction} mode="wait">
+              <motion.div
+                key={t.id}
+                custom={direction}
+                variants={slideVariants}
+                initial="enter"
+                animate="center"
+                exit="exit"
+                transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
+              >
+                <GlassCard glow="highlight" className="text-center">
+                  <FaQuoteLeft size={28} className="text-primary-500/30 mx-auto mb-5" />
 
-                {/* Quote text */}
-                <p className="text-foreground-secondary text-sm font-body leading-relaxed mb-6 flex-grow italic">
-                  &ldquo;{testimonial.quote}&rdquo;
-                </p>
+                  <p className="text-foreground-secondary text-base sm:text-lg font-body leading-relaxed mb-6 italic max-w-2xl mx-auto">
+                    &ldquo;{t.quote}&rdquo;
+                  </p>
 
-                {/* Rating */}
-                <div className="flex gap-0.5 mb-4">
-                  {Array.from({ length: testimonial.rating }).map((_, i) => (
-                    <HiStar key={i} size={16} className="text-highlight-400" />
-                  ))}
-                </div>
+                  <div className="flex justify-center gap-0.5 mb-5">
+                    {Array.from({ length: t.rating }).map((_, i) => (
+                      <HiStar key={i} size={18} className="text-highlight-400" />
+                    ))}
+                  </div>
 
-                {/* Author */}
-                <div className="pt-4 border-t border-glass-border">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary-500 to-accent-500 flex items-center justify-center text-white text-sm font-heading font-bold">
-                      {testimonial.name.charAt(0)}
+                  <div className="flex items-center justify-center gap-3">
+                    <div className="w-11 h-11 rounded-full bg-gradient-to-br from-primary-500 to-accent-500 flex items-center justify-center text-white text-sm font-heading font-bold">
+                      {t.name.charAt(0)}
                     </div>
-                    <div>
-                      <p className="text-foreground text-sm font-heading font-semibold">
-                        {testimonial.name}
-                      </p>
-                      <p className="text-foreground-dim text-xs font-body">
-                        {testimonial.role} &middot; {testimonial.company}
-                      </p>
+                    <div className="text-left">
+                      <p className="text-foreground text-sm font-heading font-semibold">{t.name}</p>
+                      <p className="text-foreground-dim text-xs font-body">{t.role} &middot; {t.company}</p>
                     </div>
                   </div>
-                </div>
-              </GlassCard>
-            </motion.div>
-          ))}
-        </motion.div>
+                </GlassCard>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+
+          {/* Navigation arrows */}
+          <button
+            onClick={prev}
+            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-3 sm:-translate-x-14 w-10 h-10 rounded-full glass flex items-center justify-center text-foreground-muted hover:text-foreground hover:shadow-glow transition-all z-10"
+            aria-label="Previous testimonial"
+          >
+            <HiChevronLeft size={20} />
+          </button>
+          <button
+            onClick={next}
+            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-3 sm:translate-x-14 w-10 h-10 rounded-full glass flex items-center justify-center text-foreground-muted hover:text-foreground hover:shadow-glow transition-all z-10"
+            aria-label="Next testimonial"
+          >
+            <HiChevronRight size={20} />
+          </button>
+
+          {/* Dots indicator */}
+          <div className="flex justify-center gap-2 mt-6">
+            {testimonials.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setActive([i, i > active ? 1 : -1])}
+                className={`h-2 rounded-full transition-all duration-300 ${
+                  i === active
+                    ? 'w-8 bg-gradient-to-r from-primary-500 to-accent-500'
+                    : 'w-2 bg-foreground-dim/30 hover:bg-foreground-dim/60'
+                }`}
+                aria-label={`Go to testimonial ${i + 1}`}
+              />
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );
