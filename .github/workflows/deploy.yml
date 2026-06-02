@@ -33,9 +33,15 @@ jobs:
           host: ${{ secrets.EC2_HOST }}
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_SSH_KEY }}
+          timeout: 60s
+          command_timeout: 20m
           script: |
+            set -e
             cd ~/ibraheem-bello-portfolio
             git pull origin main
-            cd client && npm ci && npm run build && cd ..
+            # 1 GB instance: cap Node heap and lean on swap so the client build doesn't OOM
+            cd client && npm ci && NODE_OPTIONS=--max-old-space-size=1536 npm run build && cd ..
             cd server && npm ci && npm run build && cd ..
-            pm2 restart portfolio-api || pm2 start server/dist/server.js --name portfolio-api
+            chmod -R 755 client/dist
+            pm2 restart portfolio-api --update-env || pm2 start ecosystem.config.js
+            pm2 save
