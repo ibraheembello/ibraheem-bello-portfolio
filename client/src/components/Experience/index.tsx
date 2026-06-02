@@ -5,10 +5,25 @@ import { useScrollReveal } from '@/lib/animations/hooks';
 import ParallaxBg from '@/components/ui/ParallaxBg';
 import SectionHeading from '@/components/ui/SectionHeading';
 import GlassCard from '@/components/ui/GlassCard';
+import LazyImage from '@/components/ui/LazyImage';
 import { HiBriefcase, HiCalendar, HiLocationMarker } from 'react-icons/hi';
 import type { Experience as ExperienceType } from '@/types';
 
 const certifications = [
+  {
+    title: 'Diploma in Backend Engineering',
+    issuer: 'AltSchool Africa',
+    date: 'Mar 2026',
+    description: 'Awarded by the School of Engineering on completing the Backend Engineering program. Credential ID: REF-liY6M4tnG6Z3ouBrdf.',
+    image: '/images/certifications/altschool-diploma.webp',
+  },
+  {
+    title: 'Certificate of Appreciation',
+    issuer: 'AltSchool Africa',
+    date: 'Mar 2026',
+    description: 'In recognition of service as Vice-President, School of Engineering, AltSchool Africa.',
+    image: '/images/certifications/altschool-leadership.webp',
+  },
   {
     title: 'HNG Internship Finalist',
     issuer: 'HNG',
@@ -209,14 +224,15 @@ export default function Experience() {
                 <motion.div key={cert.title} variants={slideInLeft}>
                   <GlassCard glow="accent" className="group">
                     <div className="flex items-start gap-4">
-                      <div className="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0 bg-background-surface">
-                        <img
-                          src={cert.image}
-                          alt={cert.title}
-                          className="w-full h-full object-cover"
-                          loading="lazy"
-                        />
-                      </div>
+                      <a
+                        href={cert.image}
+                        target="_blank"
+                        rel="noreferrer"
+                        title="View certificate"
+                        className="block w-16 h-16 rounded-lg overflow-hidden flex-shrink-0 bg-background-surface ring-1 ring-glass-border hover:ring-2 hover:ring-accent-500/50 transition"
+                      >
+                        <LazyImage src={cert.image} alt={cert.title} className="w-full h-full" />
+                      </a>
                       <div className="flex-grow">
                         <div className="flex items-start justify-between">
                           <div>

@@ -59,5 +59,124 @@
     "image": "/images/projects/birthday.webp",
     "featured": false,
     "category": "Backend"
+  },
+  {
+    "id": 7,
+    "title": "Insighta Labs+ Backend",
+    "description": "Secure profile-intelligence API serving a CLI, a web portal, and direct API consumers from one data and permission model. GitHub OAuth + PKCE, role-based access control, CSV export, and a full security middleware stack (helmet, CORS, rate-limit, CSRF). Deployed on AWS App Runner. HNG Stage 3.",
+    "technologies": ["TypeScript", "Express", "Prisma", "PostgreSQL", "OAuth/PKCE", "Docker", "AWS"],
+    "liveUrl": "https://pep3ec3gaj.us-east-1.awsapprunner.com/api/v1/health",
+    "githubUrl": "https://github.com/ibraheembello/HNG-Stage3-Backend",
+    "image": "/images/projects/insighta-backend.webp",
+    "featured": true,
+    "category": "Backend"
+  },
+  {
+    "id": 8,
+    "title": "Insighta Labs+ Web Portal",
+    "description": "Next.js 15 portal for the Insighta platform. Single-origin via server rewrites so http-only cookies and CSRF work without cross-domain workarounds, role-aware UI, and automatic token refresh on 401. HNG Stage 3.",
+    "technologies": ["TypeScript", "Next.js", "React", "Tailwind", "CSRF"],
+    "liveUrl": "https://insighta-web-eta.vercel.app",
+    "githubUrl": "https://github.com/ibraheembello/HNG-Stage3-Web",
+    "image": "/images/projects/insighta-web.webp",
+    "featured": false,
+    "category": "Full-Stack"
+  },
+  {
+    "id": 9,
+    "title": "Insighta CLI",
+    "description": "Globally installable terminal client for the Insighta platform. Logs in with GitHub OAuth + PKCE straight from the shell via a one-shot loopback server, stores tokens at 0600, and exports profiles as CSV. HNG Stage 3.",
+    "technologies": ["TypeScript", "Commander", "axios", "OAuth/PKCE", "Node.js"],
+    "githubUrl": "https://github.com/ibraheembello/HNG-Stage3-CLI",
+    "image": "/images/projects/insighta-cli.webp",
+    "featured": false,
+    "category": "Backend"
+  },
+  {
+    "id": 10,
+    "title": "FlowBrand Strategy Service",
+    "description": "NestJS microservice that turns a marketing brief into a full strategy tree (strategy → funnel stages → tasks) using Claude, persisted in a single database transaction. JWT auth guard, per-user daily rate limit, and Swagger docs. Deployed on AWS. HNG Stage 5.",
+    "technologies": ["TypeScript", "NestJS", "PostgreSQL", "TypeORM", "Anthropic Claude", "JWT"],
+    "liveUrl": "http://44.203.100.208:3009/api/docs",
+    "githubUrl": "https://github.com/ibraheembello/flowbrand-strategy-service",
+    "image": "/images/projects/flowbrand.webp",
+    "featured": true,
+    "category": "Backend"
+  },
+  {
+    "id": 11,
+    "title": "Append-Only Event Store",
+    "description": "A key-value event store where the log file is the database: append-only writes, an in-memory byte-offset index for O(1) reads, and replay-based crash recovery that rebuilds the index on restart — the same WAL trick Postgres and SQLite use.",
+    "technologies": ["TypeScript", "Express", "Node.js", "Swagger"],
+    "githubUrl": "https://github.com/ibraheembello/append-only-event-store",
+    "image": "/images/projects/event-store.webp",
+    "featured": false,
+    "category": "Backend"
+  },
+  {
+    "id": 12,
+    "title": "Intelligence Query Engine",
+    "description": "Demographic query platform with a rule-based natural-language parser that turns plain English like \"young males from nigeria\" into structured database filters — no LLM, just deterministic regex rules. Validated end-to-end with Playwright. HNG Stage 2.",
+    "technologies": ["TypeScript", "Express", "Prisma", "PostgreSQL", "Playwright"],
+    "liveUrl": "https://hng-stage2-query-engine.vercel.app",
+    "githubUrl": "https://github.com/ibraheembello/HNG-Stage2-Query-Engine",
+    "image": "/images/projects/query-engine.webp",
+    "featured": false,
+    "category": "Full-Stack"
+  },
+  {
+    "id": 13,
+    "title": "Profile Classification System",
+    "description": "Full-stack app that classifies a name's likely gender, age group, and nationality using three external APIs in parallel for sub-second responses, with full idempotency to prevent duplicates and time-ordered UUIDv7 IDs. HNG Stage 1.",
+    "technologies": ["TypeScript", "Express", "Prisma", "PostgreSQL", "React"],
+    "liveUrl": "https://hng-stage1-api.vercel.app",
+    "githubUrl": "https://github.com/ibraheembello/HNG-Stage1-Api",
+    "image": "/images/projects/profile-classifier.webp",
+    "featured": false,
+    "category": "Full-Stack"
+  },
+  {
+    "id": 14,
+    "title": "Gender Classifier API",
+    "description": "Focused API that classifies names by gender via Genderize.io with the production concerns handled: Zod validation, in-memory caching, rate limiting, request timeouts, structured logging, Swagger docs, and full Jest/Supertest coverage.",
+    "technologies": ["TypeScript", "Express", "Zod", "Swagger", "Winston", "Jest"],
+    "liveUrl": "https://api-integration-assessment.vercel.app",
+    "githubUrl": "https://github.com/ibraheembello/Api-Integration-Assessment",
+    "image": "/images/projects/gender-classifier.webp",
+    "featured": false,
+    "category": "Backend"
+  },
+  {
+    "id": 15,
+    "title": "HNG Backend Portfolio",
+    "description": "A focused, single-page portfolio of my backend work during the HNG internship — profile, every HNG project, skills backed by evidence, a featured deep dive, and an honest reflection. Built lean with React + Vite + Tailwind, no animation libraries.",
+    "technologies": ["React", "TypeScript", "Vite", "Tailwind"],
+    "liveUrl": "https://hng-backend-portfolio-wine.vercel.app",
+    "githubUrl": "https://github.com/ibraheembello/hng-backend-portfolio",
+    "image": "/images/projects/hng-portfolio.webp",
+    "featured": false,
+    "category": "Full-Stack"
+  },
+  {
+    "id": 16,
+    "title": "Schema Pilot",
+    "description": "An npm package that analyzes Prisma + PostgreSQL migrations for dangerous changes before they reach production — data loss, table locks, missing defaults, unsafe renames — and gives clear, actionable fixes. Runs in CI and exits non-zero on risky migrations.",
+    "technologies": ["TypeScript", "Node.js", "Prisma", "PostgreSQL", "CLI"],
+    "liveUrl": "https://www.npmjs.com/package/schema-pilot",
+    "githubUrl": "https://github.com/ibraheembello/schema-pilot",
+    "image": "/images/projects/schema-pilot.webp",
+    "featured": false,
+    "category": "Backend"
+  },
+  {
+    "id": 17,
+    "title": "Bandelore",
+    "description": "A production full-stack comic reading and publishing platform. NestJS + TypeORM + PostgreSQL API with JWT auth and role-based access control, AWS S3 media storage, and a React reader UI with a dual-mode comic reader. 154 tests passing.",
+    "technologies": ["TypeScript", "NestJS", "TypeORM", "PostgreSQL", "JWT", "AWS S3", "React"],
+    "liveUrl": "https://ddu7sug91we0v.cloudfront.net",
+    "githubUrl": "https://github.com/ibraheembello/bandelore-api",
+    "image": "/images/projects/bandelore.webp",
+    "featured": true,
+    "category": "Full-Stack"
   }
 ]

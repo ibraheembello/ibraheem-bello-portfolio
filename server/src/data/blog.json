@@ -1,5 +1,16 @@
 [
   {
+    "id": 3,
+    "title": "Building a Real-Time Anomaly Detection Engine for a Self-Hosted Nextcloud (HNG Stage 3)",
+    "description": "A Python daemon that monitors HTTP requests in real time and blocks anomalous traffic using statistical analysis and iptables firewall rules.",
+    "url": "https://dev.to/ibraheembello/building-a-real-time-anomaly-detection-engine-for-a-self-hosted-nextcloud-hng-stage-3-59km",
+    "publishedAt": "2026-04-26",
+    "readingTime": "7 min read",
+    "tags": ["DevOps", "Security", "Python", "Docker"],
+    "coverImage": "https://media2.dev.to/dynamic/image/width=1000,height=420,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Fyqo7aq66cilcp8esz8i9.png",
+    "platform": "dev.to"
+  },
+  {
     "id": 1,
     "title": "Deploying NestJS Microservices to Azure Container Apps",
     "description": "A comprehensive guide on deploying NestJS microservices to Azure Container Apps, covering Docker setup, CI/CD pipelines, and production monitoring.",
