@@ -13,6 +13,10 @@ import resumeRoutes from './routes/resumeRoutes';
 
 const app = express();
 
+// Behind an Nginx reverse proxy in production — trust the first hop so
+// express-rate-limit and req.ip read the real client IP from X-Forwarded-For.
+app.set('trust proxy', 1);
+
 // Security headers
 app.use(
   helmet({
